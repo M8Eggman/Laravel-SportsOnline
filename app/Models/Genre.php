@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
-    /** @use HasFactory<\Database\Factories\GenreFactory> */
     use HasFactory;
+
+    protected $factory = [
+        'name'
+    ];
+
+    public function joueur(){
+        return $this->hasMany(Joueur::class);
+    }
+    public function equipe(){
+        return $this->hasMany(Equipe::class);
+    }
+
+
 }

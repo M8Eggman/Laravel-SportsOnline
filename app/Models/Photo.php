@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    /** @use HasFactory<\Database\Factories\PhotoFactory> */
     use HasFactory;
+
+    protected $factory = [
+        'src'
+    ];
+
+    public function joueur(){
+        return $this->belongsTo(Joueur::class);
+    }
 }

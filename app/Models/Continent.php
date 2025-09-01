@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Continent extends Model
 {
-    /** @use HasFactory<\Database\Factories\ContinentFactory> */
     use HasFactory;
+
+    protected $factory = [
+        'name'
+    ];
+
+    public function equipe(){
+        return $this->belongsTo(Equipe::class);
+    }
+    
+    
 }

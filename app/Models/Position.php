@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    /** @use HasFactory<\Database\Factories\PositionFactory> */
     use HasFactory;
+
+    protected $factory = [
+        'name'
+    ];
+
+    public function joueur(){
+        return $this->hasMany(Joueur::class);
+    }
+
+
 }
