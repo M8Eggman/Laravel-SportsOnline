@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('city');
             $table->foreignId('equipe_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('position_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('genre_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
