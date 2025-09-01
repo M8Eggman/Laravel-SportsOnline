@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('last_name');
             $table->integer('age');
             $table->string('phone');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('city');
-            $table->foreignId('equipe_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('position_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('genre_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('equipe_id')->nullable()->constrained('equipes')->nullOnDelete();
+            $table->foreignId('position_id')->nullable()->constrained('positions')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('genre_id')->nullable()->constrained('genres')->nullOnDelete();
             $table->timestamps();
         });
     }
