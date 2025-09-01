@@ -54,6 +54,7 @@ class JoueurSeeder extends Seeder
                     'equipe_id' => $e->id,
                     'position_id' => $p,
                 ]);
+                getRandomPhotoId($joueur->id, $path);
             }
 
             // 2 remplaçants aléatoires
@@ -62,9 +63,10 @@ class JoueurSeeder extends Seeder
                     'equipe_id' => $e->id,
                     'position_id' => $positions[array_rand($positions)],
                 ]);
+                getRandomPhotoId($joueur->id, $path);
             }
         }
 
-        Joueur::factory()->count(10)->create();
+        Joueur::factory()->has(Photo::factory())->count(10)->create();
     }
 }

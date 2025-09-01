@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-    <div id="carouselValorant" class="carousel slide">
+    <div id="carouselValorant" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="https://files.bo3.gg/uploads/image/66139/image/webp-49980b5cf1a5e9c004732e496f37128e.webp"
