@@ -64,5 +64,7 @@ class JoueurSeeder extends Seeder
                 ]);
             }
         }
+
+        Joueur::factory()->count(10)->create();
     }
 }

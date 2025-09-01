@@ -39,7 +39,7 @@ class JoueurFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'city' => $this->faker->city(),
             // possibilité de pas avoir d'équipe
-            'equipe_id' => $this->faker->optional(0.7)->randomElement($equipes),
+            'equipe_id' => null,
             'position_id' => $this->faker->randomElement($positions),
             'genre_id' => $genre->id,
             'user_id' => User::first()->id,
