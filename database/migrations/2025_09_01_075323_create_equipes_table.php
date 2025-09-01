@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('equipes', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->string('city');
+            $table->foreignId('continent_id');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
