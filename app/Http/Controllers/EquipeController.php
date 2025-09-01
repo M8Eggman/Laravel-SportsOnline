@@ -11,9 +11,17 @@ class EquipeController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        //
+        $equipes = Equipe::all();
+        return view('front.equipe.index', compact('equipes'));
+    }
+    
+    public function show($id)
+    {
+        $equipe = Equipe::findOrFail($id);
+        return view('equipe.show', compact('equipe'));
     }
 
     /**
@@ -32,13 +40,6 @@ class EquipeController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Equipe $equipe)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
