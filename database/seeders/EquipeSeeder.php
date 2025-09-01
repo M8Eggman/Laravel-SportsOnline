@@ -24,42 +24,42 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Fnatic',
                 'city' => 'Londres',
-                'genre' => $masculin,
+                'genre_id' => $masculin,
                 'continent_id' => Continent::where('name', 'Europe')->first()->id,
                 'user_id' => User::first()->id
             ],
             [
                 'name' => 'Gambit Esports',
                 'city' => 'Moscou',
-                'genre' => $masculin,
+                'genre_id' => $masculin,
                 'continent_id' => Continent::where('name', 'CIS')->first()->id,
                 'user_id' => User::first()->id
             ],
             [
                 'name' => 'Sentinels',
                 'city' => 'Los Angeles',
-                'genre' => $feminin,
+                'genre_id' => $feminin,
                 'continent_id' => Continent::where('name', 'Americas')->first()->id,
                 'user_id' => User::first()->id
             ],
             [
                 'name' => 'ORDER',
                 'city' => 'Sydney',
-                'genre' => $feminin,
+                'genre_id' => $feminin,
                 'continent_id' => Continent::where('name', 'Oceania')->first()->id,
                 'user_id' => User::first()->id
             ],
             [
                 'name' => 'Vision Strikers',
                 'city' => 'Séoul',
-                'genre' => $mixte,
+                'genre_id' => $mixte,
                 'continent_id' => Continent::where('name', 'Asia')->first()->id,
                 'user_id' => User::first()->id
             ],
             [
                 'name' => 'Anubis Gaming',
                 'city' => 'Le Caire',
-                'genre' => $mixte,
+                'genre_id' => $mixte,
                 'continent_id' => Continent::where('name', 'Africa & Middle East')->first()->id,
                 'user_id' => User::first()->id
             ]
