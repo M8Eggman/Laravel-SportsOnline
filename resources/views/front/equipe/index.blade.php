@@ -22,6 +22,7 @@
             </div>
         </div>
         @endforeach
+        <a href="{{ route('equipe.index') }}">Administration des équipes</a>
     </div>
 </div>
 @endsection

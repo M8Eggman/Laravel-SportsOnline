@@ -1,14 +1,14 @@
 @extends('layouts.back')
 
-@section('title', 'Créer une équipe')
+@section('title', 'Modifier l\'équipe')
 
 @section('content')
 <div class="container mt-4">
-    <div class="row justify-content-center">
+    <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">Créer une nouvelle équipe</h4>
+                    <h4 class="mb-0">Modifier l'équipe : {{ $equipe->name }}</h4>
                     <a href="{{ route('equipe.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Retour à la liste
                     </a>
@@ -25,8 +25,9 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('equipe.store') }}" method="POST">
+                    <form action="{{ route('equipe.update', $equipe->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         
                         <div class="row">
                             <div class="col-md-6">
@@ -36,7 +37,7 @@
                                            class="form-control @error('name') is-invalid @enderror" 
                                            id="name" 
                                            name="name" 
-                                           value="{{ old('name') }}"
+                                           value="{{ old('name', $equipe->name) }}"
                                            required>
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -51,7 +52,7 @@
                                            class="form-control @error('city') is-invalid @enderror" 
                                            id="city" 
                                            name="city" 
-                                           value="{{ old('city') }}"
+                                           value="{{ old('city', $equipe->city) }}"
                                            required>
                                     @error('city')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -70,7 +71,8 @@
                                             required>
                                         <option value="">Sélectionner un genre</option>
                                         @foreach($genres as $genre)
-                                            <option value="{{ $genre->id }}" {{ old('genre_id') == $genre->id ? 'selected' : '' }}>
+                                            <option value="{{ $genre->id }}" 
+                                                {{ (old('genre_id', $equipe->genre_id) == $genre->id) ? 'selected' : '' }}>
                                                 {{ $genre->name }}
                                             </option>
                                         @endforeach
@@ -89,7 +91,8 @@
                                             name="continent_id">
                                         <option value="">Sélectionner un continent</option>
                                         @foreach($continents as $continent)
-                                            <option value="{{ $continent->id }}" {{ old('continent_id') == $continent->id ? 'selected' : '' }}>
+                                            <option value="{{ $continent->id }}" 
+                                                {{ (old('continent_id', $equipe->continent_id) == $continent->id) ? 'selected' : '' }}>
                                                 {{ $continent->name }}
                                             </option>
                                         @endforeach
@@ -112,10 +115,57 @@
                                 Annuler
                             </a>
                             <button type="submit" class="btn btn-primary">
-                                Créer l'équipe
+                                Mettre à jour
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section des joueurs de l'équipe -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Joueurs de l'équipe</h5>
+                    <span class="badge bg-primary">{{ $joueurs->count() }} joueur(s)</span>
+                </div>
+                <div class="card-body">
+                    @if($joueurs->count() > 0)
+                        <div class="list-group list-group-flush">
+                            @foreach($joueurs as $joueur)
+                                <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                    <div>
+                                        <strong>{{ $joueur->name }}</strong>
+                                        @if($joueur->position)
+                                            <br><small class="text-muted">{{ $joueur->position->name }}</small>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('joueur.show', $joueur->id) }}" 
+                                           class="btn btn-sm btn-outline-primary">
+                                            Voir
+                                        </a>
+                                        <a href="{{ route('joueur.edit', $joueur->id) }}" 
+                                           class="btn btn-sm btn-outline-secondary">
+                                            Modifier
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center text-muted py-4">
+                            <p class="mb-0">Aucun joueur dans cette équipe</p>
+                        </div>
+                    @endif
+                    
+                    <div class="mt-3">
+                        <a href="{{ route('joueur.create') }}?equipe_id={{ $equipe->id }}" 
+                           class="btn btn-success btn-sm w-100">
+                            Ajouter un joueur
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
