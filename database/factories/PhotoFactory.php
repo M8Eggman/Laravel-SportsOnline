@@ -17,10 +17,8 @@ class PhotoFactory extends Factory
      */
     public function definition(): array
     {
-        $files = Storage::files('public/seeder_player_photos');
-
         return [
-            'src' => Storage::url($this->faker->randomElement($files)),
+            // 
         ];
     }
 }

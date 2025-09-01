@@ -22,22 +22,27 @@ class JoueurFactory extends Factory
     {
         // récupère les informations dans les autres tables
         $positions = Position::pluck('id')->toArray();
-        $genres = Genre::pluck('id')->toArray();
         $equipes = Equipe::pluck('id')->toArray();
+        // récupère un objet genre aléatoire et lutilise pour le nom et le genre de la personne
+        $genre = Genre::all()->random();
 
         return [
-            'nom' => $this->faker->lastName,
-            'prenom' => $this->faker->firstName,
+            // selon le genre de la personne adapte son prenom
+            'first_name' => match ($genre->name) {
+                'masculin' => $this->faker->firstNameMale(),
+                'feminin' => $this->faker->firstNameFemale(),
+                default => $this->faker->firstName(),
+            },
+            'last_name' => $this->faker->lastName(),
             'age' => $this->faker->numberBetween(16, 35),
-            'phone' => $this->faker->phoneNumber,
-            'email' => $this->faker->unique()->safeEmail,
-            'pays' => $this->faker->country(),
-            'position_id' => $this->faker->randomElement($positions),
+            'phone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'city' => $this->faker->city(),
             // possibilité de pas avoir d'équipe
             'equipe_id' => $this->faker->optional(0.7)->randomElement($equipes),
-            'genre_id' => $this->faker->randomElement($genres),
+            'position_id' => $this->faker->randomElement($positions),
+            'genre_id' => $genre->id,
             'user_id' => User::first()->id,
-            'photo_id' => null,
         ];
     }
 }

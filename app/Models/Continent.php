@@ -9,7 +9,7 @@ class Continent extends Model
 {
     use HasFactory;
 
-    protected $factory = [
+    protected $fillable = [
         'name'
     ];
 
