@@ -47,10 +47,12 @@ class User extends Authenticatable
         ];
     }
 
-    protected function role(){
-        return $this-> belongsTo(Role::class);
+    protected function role()
+    {
+        return $this->belongsTo(Role::class);
     }
-    protected function joueur(){
+    protected function joueur()
+    {
         return $this->hasMany(Joueur::class);
     }
 }

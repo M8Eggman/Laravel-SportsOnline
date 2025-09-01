@@ -9,7 +9,7 @@ class Equipe extends Model
 {
     use HasFactory;
 
-    protected $factory = [
+    protected $fillable = [
         'name', 'city','genre'
     ];
 
