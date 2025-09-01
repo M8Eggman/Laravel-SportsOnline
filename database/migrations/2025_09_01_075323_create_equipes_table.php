@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('city');
+            $table->enum('genre', ['homme', 'femme', 'mixte']);
             $table->foreignId('continent_id');
             $table->foreignId('user_id');
             $table->timestamps();

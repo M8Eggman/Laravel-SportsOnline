@@ -10,7 +10,7 @@ class Equipe extends Model
     use HasFactory;
 
     protected $factory = [
-        'name', 'city'
+        'name', 'city','genre'
     ];
 
     public function continent(){
