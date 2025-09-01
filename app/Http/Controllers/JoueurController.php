@@ -13,9 +13,15 @@ class JoueurController extends Controller
      */
     public function index()
     {
-        //
+        $joueurs = Joueur::all();
+        return view('joueur.index', compact('joueurs'));
     }
-
+    
+    public function show($id)
+    {
+        $joueur = Joueur::findOrFail($id);
+        return view('joueur.show', compact('joueur'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -32,13 +38,6 @@ class JoueurController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Joueur $joueur)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
