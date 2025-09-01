@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Genre;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,13 @@ class GenreSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $genres = [
+            ['name' => 'masculin'],
+            ['name' => 'feminin'],
+        ];
+
+        foreach ($genres as $g) {
+            Genre::create($g);
+        }
     }
 }
