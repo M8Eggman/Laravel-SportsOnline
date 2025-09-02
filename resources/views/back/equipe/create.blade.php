@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">Créer une nouvelle équipe</h4>
-                    <a href="{{ route('equipe.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('back.equipe.index') }}" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Retour à la liste
                     </a>
                 </div>
@@ -25,7 +25,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('equipe.store') }}" method="POST">
+                    <form action="{{ route('back.equipe.store') }}" method="POST">
                         @csrf
                         
                         <div class="row">
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="{{ route('equipe.index') }}" class="btn btn-outline-secondary me-md-2">
+                            <a href="{{ route('back.equipe.index') }}" class="btn btn-outline-secondary me-md-2">
                                 Annuler
                             </a>
                             <button type="submit" class="btn btn-primary">

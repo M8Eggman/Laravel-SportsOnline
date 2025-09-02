@@ -26,86 +26,55 @@
         </button>
     </div>
 
-    <section class="container my-5">
+    <section class="container py-5">
         <h2 class="mb-4">European Teams</h2>
         <div class="row g-4">
             @foreach ($europeTeams as $t)
                 <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ $t->logo_url ? asset('storage/' . $t->logo_url) : 'https://placehold.co/400' }}"
-                            class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $t->name }}</h5>
-                            <p class="card-text">{{ $t->city }}</p>
-                        </div>
-                    </div>
+                    <x-team-card :name="$t->name" :city="$t->city" :logo="$t->url ? $t->url : null" :link="route('equipe.show', $t->id)" />
                 </div>
             @endforeach
         </div>
     </section>
-    <section class="container mb-5">
+    <section class="container pb-5">
         <h2 class="mb-4">Top European Players</h2>
         <div class="row g-4">
             @foreach ($europePlayers as $p)
                 <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ $p->photo->src ? asset('storage/' . $p->photo->src) : 'https://placehold.co/400' }}"
-                            class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $p->first_name }} {{ $p->last_name }}</h5>
-                            <p class="card-text">Position: {{ ucfirst($p->position->name) }}</p>
-                        </div>
-                    </div>
+                    <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
+                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" />
                 </div>
             @endforeach
         </div>
     </section>
-    <section class="container mb-5">
+    <section class="container pb-5">
         <h2 class="mb-4">International Teams</h2>
         <div class="row g-4">
             @foreach ($notEuropeTeams as $t)
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ $t->logo_url ? asset('storage/' . $t->logo_url) : 'https://placehold.co/400' }}"
-                            class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $t->name }}</h5>
-                            <p class="card-text">{{ $t->city }}</p>
-                        </div>
-                    </div>
+                <div class="col-3">
+                    <x-team-card :name="$t->name" :city="$t->city" :logo="$t->url ? $t->url : null" :link="route('equipe.show', $t->id)" />
                 </div>
             @endforeach
         </div>
     </section>
-    <section class="container mb-5">
+    <section class="container pb-5">
         <h2 class="mb-4">International Players</h2>
         <div class="row g-4">
             @foreach ($notEuropePlayers as $p)
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ $p->photo->src ? asset('storage/' . $p->photo->src) : 'https://placehold.co/400' }}"
-                            class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $p->first_name }} {{ $p->last_name }}</h5>
-                            <p class="card-text">Position: {{ ucfirst($p->position->name) }}</p>
-                        </div>
-                    </div>
+                <div class="col-3">
+                    <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
+                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" />
                 </div>
             @endforeach
         </div>
     </section>
-    <section class="container mb-5">
+    <section class="container pb-5">
         <h2 class="mb-4">Free Agents</h2>
         <div class="row g-4">
             @foreach ($freePlayers as $p)
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="{{ $p->photo->src ?? 'https://placehold.co/400' }}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $p->first_name }} {{ $p->last_name }}</h5>
-                            <p class="card-text">Position: {{ ucfirst($p->position->name) }}</p>
-                        </div>
-                    </div>
+                <div class="col-3">
+                    <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
+                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" />
                 </div>
             @endforeach
         </div>

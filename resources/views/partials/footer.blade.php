@@ -1,4 +1,4 @@
-<footer class="bd-footer py-5 mt-5 bg-dark text-light">
+<footer class="bd-footer py-5 bg-dark text-light">
   <div class="container d-flex justify-content-center">
     <div class="d-flex gap-5 w-100">
       <div class="flex-grow-1">

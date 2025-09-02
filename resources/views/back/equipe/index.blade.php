@@ -8,7 +8,7 @@
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h1>Liste des Équipes</h1>
-                <a href="{{ route('equipe.create') }}" class="btn btn-primary">Créer une équipe</a>
+                <a href="{{ route('back.equipe.create') }}" class="btn btn-primary">Créer une équipe</a>
             </div>
 
             <div class="table-responsive">
@@ -61,15 +61,15 @@
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <a href="{{ route('equipe.show', $equipe->id) }}" class="btn btn-sm btn-outline-info"
-                                            title="Voir">
+                                        <a href="{{ route('back.equipe.show', $equipe->id) }}"
+                                            class="btn btn-sm btn-outline-info" title="Voir">
                                             Voir
                                         </a>
-                                        <a href="{{ route('equipe.edit', $equipe->id) }}" class="btn btn-sm btn-outline-warning"
-                                            title="Modifier">
+                                        <a href="{{ route('back.equipe.edit', $equipe->id) }}"
+                                            class="btn btn-sm btn-outline-warning" title="Modifier">
                                             Modifier
                                         </a>
-                                        <form method="POST" action="{{ route('equipe.destroy', $equipe->id) }}"
+                                        <form method="POST" action="{{ route('back.equipe.delete', $equipe->id) }}"
                                             style="display: inline;"
                                             onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer l\'équipe {{ $equipe->name }} ?')">
                                             @csrf
