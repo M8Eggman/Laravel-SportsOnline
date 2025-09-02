@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateJoueurRequest;
 use App\Models\Photo;
 use App\Models\Position;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Str;
 
@@ -79,7 +80,7 @@ class JoueurController extends Controller
         $joueur->position_id = $request->position_id;
         $joueur->equipe_id = $request->equipe_id;
         $joueur->genre_id = $request->genre_id;
-        $joueur->user_id = Auth::id() ?? null;
+        $joueur->user_id = $request->user()->id;
 
         $joueur->save();
 
@@ -111,6 +112,11 @@ class JoueurController extends Controller
     public function edit($id)
     {
         $joueur = Joueur::findOrFail($id);
+
+        if (!Gate::allows('update-joueur', $joueur)) {
+            return redirect('/');
+        }
+
         $positions = Position::all();
         $equipes = Equipe::all();
         $genres = Genre::all();
@@ -132,11 +138,21 @@ class JoueurController extends Controller
         ]);
 
         $joueur = Joueur::findOrFail($id);
+
+        if (!Gate::allows('update-joueur', $joueur)) {
+            return redirect('/');
+        }
+
         $joueur->first_name = $request->first_name;
         $joueur->last_name = $request->last_name;
         $joueur->age = $request->age;
+        $joueur->phone = $request->phone;
+        $joueur->email = $request->email;
+        $joueur->city = $request->city;
         $joueur->position_id = $request->position_id;
         $joueur->equipe_id = $request->equipe_id;
+        $joueur->genre_id = $request->genre_id;
+        $joueur->user_id = $request->user()->id;
 
         $joueur->save();
 
@@ -175,6 +191,11 @@ class JoueurController extends Controller
     public function destroy($id)
     {
         $joueur = Joueur::findOrFail($id);
+
+        if (!Gate::allows('update-joueur', $joueur)) {
+            return redirect('/');
+        }
+        
         $joueur->delete();
 
         return redirect()->route('back.joueur.index')->with('success', 'Joueur supprimé !');

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEquipeRequest;
+use App\Http\Requests\UpdateEquipeRequest;
 use App\Models\Equipe;
 use App\Models\Genre;
 use App\Models\Continent;
 use App\Models\Joueur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class EquipeController extends Controller
 {
@@ -36,7 +39,6 @@ class EquipeController extends Controller
 
     public function index_back()
     {
-
         $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
         $genres = Genre::all();
         $continents = Continent::all();
@@ -72,23 +74,27 @@ class EquipeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEquipeRequest $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'genre_id' => 'required|exists:genres,id',
+            'url' => 'nullable|string',
+            'genre_id' => 'nullable|exists:genres,id',
             'continent_id' => 'nullable|exists:continents,id',
         ]);
 
-        Equipe::create([
-            'name' => $request->name,
-            'city' => $request->city,
-            'genre_id' => $request->genre_id,
-            'continent_id' => $request->continent_id,
-        ]);
+        $equipe = new Equipe();
+        $equipe->name = $request->name;
+        $equipe->city = $request->city;
+        $equipe->url = $request->url;
+        $equipe->genre_id = $request->genre_id;
+        $equipe->user_id = $request->user()->id;
+        $equipe->continent_id = $request->continent_id;
 
-        return redirect()->route('equipe.index')->with('success', 'Équipe ajoutée avec succès');
+        $equipe->save();
+
+        return redirect()->route('back.equipe.index')->with('success', 'Équipe ajoutée avec succès');
     }
 
     /**
@@ -97,6 +103,11 @@ class EquipeController extends Controller
     public function edit($id)
     {
         $equipe = Equipe::findOrFail($id);
+
+        if (!Gate::allows('update-equipe', $equipe)) {
+            return redirect('/');
+        }
+
         $genres = Genre::all();
         $continents = Continent::all();
         $joueurs = Joueur::where('equipe_id', $id)->get();
@@ -107,24 +118,32 @@ class EquipeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEquipeRequest $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'city' => 'required|string|max:255',
-            'genre_id' => 'required|exists:genres,id',
+            'url' => 'nullable|string',
+            'genre_id' => 'nullable|exists:genres,id',
             'continent_id' => 'nullable|exists:continents,id',
         ]);
 
         $equipe = Equipe::findOrFail($id);
-        $equipe->update([
-            'name' => $request->name,
-            'city' => $request->city,
-            'genre_id' => $request->genre_id,
-            'continent_id' => $request->continent_id,
-        ]);
 
-        return redirect()->route('equipe.index')->with('success', 'Équipe mise à jour avec succès');
+        if (!Gate::allows('update-equipe', $equipe)) {
+            return redirect('/');
+        }
+
+        $equipe->name = $request->name;
+        $equipe->city = $request->city;
+        $equipe->url = $request->url;
+        $equipe->genre_id = $request->genre_id;
+        $equipe->user_id = $request->user()->id;
+        $equipe->continent_id = $request->continent_id;
+
+        $equipe->save();
+
+        return redirect()->route('back.equipe.index')->with('success', 'Équipe mise à jour avec succès');
     }
 
     /**
@@ -133,7 +152,12 @@ class EquipeController extends Controller
     public function destroy($id)
     {
         $equipe = Equipe::findOrFail($id);
+
+        if (!Gate::allows('update-equipe', $equipe)) {
+            return redirect('/');
+        }
+
         $equipe->delete();
-        return redirect()->route('equipe.index')->with('success', 'Équipe supprimée avec succès!');
+        return redirect()->route('back.equipe.index')->with('success', 'Équipe supprimée avec succès!');
     }
 }

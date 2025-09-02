@@ -70,8 +70,7 @@
                                             Modifier
                                         </a>
                                         <form method="POST" action="{{ route('back.equipe.delete', $equipe->id) }}"
-                                            style="display: inline;"
-                                            onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer l\'équipe {{ $equipe->name }} ?')">
+                                            style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-outline-danger" title="Supprimer">
