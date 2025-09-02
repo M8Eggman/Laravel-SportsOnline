@@ -9,17 +9,23 @@ class Equipe extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name', 'city', 'genre_id', 'continent_id'
-    ];
+    protected $fillable = ['name', 'city', 'genre_id', 'continent_id'];
 
-    public function continent(){
+
+    public function equipe()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function continent()
+    {
         return $this->belongsTo(Continent::class);
     }
-    public function genre(){
+    public function genre()
+    {
         return $this->belongsTo(Genre::class);
     }
-    public function joueur(){
+    public function joueur()
+    {
         return $this->hasMany(Joueur::class);
     }
 
