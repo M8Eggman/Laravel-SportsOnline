@@ -18,7 +18,7 @@ class EquipeController extends Controller
         $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
         return view('front.equipe.index', compact('equipes'));
     }
-    public function index(){
+    public function index_back(){
 
         $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
         $genres = Genre::all();
@@ -33,7 +33,7 @@ class EquipeController extends Controller
     public function show($id)
     {
         $equipe = Equipe::with(['genre', 'continent', 'joueur'])->findOrFail($id);
-        return view('front.equipe.show', compact('equipe'));
+        return view('back.equipe.show', compact('equipe'));
     }
 
     /**

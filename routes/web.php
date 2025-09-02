@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('accueil');
 
-Route::resource('continent', ContinentController::class);
-Route::resource('genre', GenreController::class);
-Route::resource('position', PositionController::class);
-Route::resource('role', RoleController::class);
 // Routes publiques (front)
 Route::get('/equipe', [EquipeController::class, 'index_front'])->name('front.equipe.index');
 
@@ -27,12 +23,17 @@ Route::prefix('back')->group(function () {
 });
 
 // route joueur 
+// front
+Route::get('/joueur', [JoueurController::class, 'index'])->name('joueur.index');
+Route::get('/joueur/{id}/show', [JoueurController::class, 'show'])->name('joueur.show');
+
+// back
 Route::get('/back/joueur', [JoueurController::class, 'index_back'])->name('back.joueur.index');
 Route::get('/back/joueur/create', [JoueurController::class, 'create'])->name('back.joueur.create');
 Route::post('/back/joueur/store', [JoueurController::class, 'store'])->name('back.joueur.store');
 Route::get('/back/joueur/{id}/edit', [JoueurController::class, 'edit'])->name('back.joueur.edit');
 Route::put('/back/joueur/{id}/update', [JoueurController::class, 'update'])->name('back.joueur.update');
-Route::get('/back/joueur/{id}/show', [JoueurController::class, 'show'])->name('back.joueur.show');
+Route::get('/back/joueur/{id}/show', [JoueurController::class, 'show_back'])->name('back.joueur.show');
 Route::delete('/back/joueur/{id}/delete', [JoueurController::class, 'destroy'])->name('back.joueur.delete');
 
 // route users

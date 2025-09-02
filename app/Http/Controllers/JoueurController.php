@@ -31,6 +31,11 @@ class JoueurController extends Controller
     public function show($id)
     {
         $joueur = Joueur::findOrFail($id);
+        return view('front.joueur.show', compact('joueur'));
+    }
+    public function show_back($id)
+    {
+        $joueur = Joueur::findOrFail($id);
         return view('back.joueur.show', compact('joueur'));
     }
     /**

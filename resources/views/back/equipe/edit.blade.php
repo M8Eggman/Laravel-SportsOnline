@@ -142,11 +142,11 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <a href="{{ route('joueur.show', $joueur->id) }}" 
+                                        <a href="{{ route('back.joueur.show', $joueur->id) }}" 
                                            class="btn btn-sm btn-outline-primary">
                                             Voir
                                         </a>
-                                        <a href="{{ route('joueur.edit', $joueur->id) }}" 
+                                        <a href="{{ route('back.joueur.edit', $joueur->id) }}" 
                                            class="btn btn-sm btn-outline-secondary">
                                             Modifier
                                         </a>
@@ -161,7 +161,7 @@
                     @endif
                     
                     <div class="mt-3">
-                        <a href="{{ route('joueur.create') }}?equipe_id={{ $equipe->id }}" 
+                        <a href="{{ route('back.joueur.create') }}?equipe_id={{ $equipe->id }}" 
                            class="btn btn-success btn-sm w-100">
                             Ajouter un joueur
                         </a>
