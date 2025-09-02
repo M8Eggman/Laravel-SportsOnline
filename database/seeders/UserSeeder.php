@@ -21,5 +21,19 @@ class UserSeeder extends Seeder
             'password' => 'password',
             'role_id' => Role::where('name', 'admin')->first()->id,
         ]);
+        User::factory()->create([
+            'first_name' => 'Coach',
+            'last_name' => 'Coach',
+            'email' => 'coach@example.com',
+            'password' => 'password',
+            'role_id' => Role::where('name', 'coach')->first()->id,
+        ]);
+        User::factory()->create([
+            'first_name' => 'User',
+            'last_name' => 'User',
+            'email' => 'user@example.com',
+            'password' => 'password',
+            'role_id' => Role::where('name', 'user')->first()->id,
+        ]);
     }
 }

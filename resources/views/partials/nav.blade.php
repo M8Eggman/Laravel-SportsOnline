@@ -46,10 +46,22 @@
             </li>
           </ul>
         </li>
+        @canany(['isAdmin'])
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('user*') ? 'active' : '' }}" href="{{ route('back.user.index') }}">See All
+              Users</a>
+          </li>
+        @endcanany
         @canany(['isAdmin', 'isCoach'])
           <li class="nav-item">
-            <a class="nav-link {{ request()->is('joueur*') ? 'active' : '' }}"
+            <a class="nav-link {{ request()->is('equipe*') ? 'active' : '' }}"
               href="{{ route('back.equipe.create') }}">Create A Team</a>
+          </li>
+        @endcanany
+        @canany(['isAdmin', 'isCoach', 'isUser'])
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('joueur*') ? 'active' : '' }}"
+              href="{{ route('back.joueur.create') }}">Create A Player</a>
           </li>
         @endcanany
       </ul>
