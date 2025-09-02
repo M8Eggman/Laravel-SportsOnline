@@ -32,7 +32,8 @@
             @foreach ($europeTeams as $t)
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ $t->logo_url ?? 'https://placehold.co/400' }}" class="card-img-top" alt="">
+                        <img src="{{ $t->logo_url ? asset('storage/' . $t->logo_url) : 'https://placehold.co/400' }}"
+                            class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ $t->name }}</h5>
                             <p class="card-text">{{ $t->city }}</p>
@@ -48,10 +49,11 @@
             @foreach ($europePlayers as $p)
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ $p->photo->src ?? 'https://placehold.co/400' }}" class="card-img-top" alt="">
+                        <img src="{{ $p->photo->src ? asset('storage/' . $p->photo->src) : 'https://placehold.co/400' }}"
+                            class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ $p->first_name }} {{ $p->last_name }}</h5>
-                            <p class="card-text">Position: {{ $p->position->name }}</p>
+                            <p class="card-text">Position: {{ ucfirst($p->position->name) }}</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +66,8 @@
             @foreach ($notEuropeTeams as $t)
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ $t->logo_url ?? 'https://placehold.co/400' }}" class="card-img-top" alt="">
+                        <img src="{{ $t->logo_url ? asset('storage/' . $t->logo_url) : 'https://placehold.co/400' }}"
+                            class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ $t->name }}</h5>
                             <p class="card-text">{{ $t->city }}</p>
@@ -80,10 +83,11 @@
             @foreach ($notEuropePlayers as $p)
                 <div class="col-md-3">
                     <div class="card">
-                        <img src="{{ $p->photo->src ?? 'https://placehold.co/400' }}" class="card-img-top" alt="">
+                        <img src="{{ $p->photo->src ? asset('storage/' . $p->photo->src) : 'https://placehold.co/400' }}"
+                            class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ $p->first_name }} {{ $p->last_name }}</h5>
-                            <p class="card-text">Position: {{ $p->position->name }}</p>
+                            <p class="card-text">Position: {{ ucfirst($p->position->name) }}</p>
                         </div>
                     </div>
                 </div>
@@ -99,7 +103,7 @@
                         <img src="{{ $p->photo->src ?? 'https://placehold.co/400' }}" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title">{{ $p->first_name }} {{ $p->last_name }}</h5>
-                            <p class="card-text">Position: {{ $p->position->name }}</p>
+                            <p class="card-text">Position: {{ ucfirst($p->position->name) }}</p>
                         </div>
                     </div>
                 </div>
