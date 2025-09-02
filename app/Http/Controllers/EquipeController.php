@@ -16,6 +16,12 @@ class EquipeController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index()
+    {
+        $equipes = Equipe::all();
+
+        return view('front.equipe.index', compact('equipes'));
+    }
     public function index_masculin()
     {
         $equipes = Equipe::whereHas('genre', fn($q) => $q->where('name', 'Masculin'))->get();
