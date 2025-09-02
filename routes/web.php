@@ -5,6 +5,8 @@ use App\Http\Controllers\JoueurController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminVerification;
+use App\Http\Middleware\RoleVerification;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,7 +16,9 @@ Route::get('/', [HomeController::class, 'home'])->name('accueil');
 
 // Routes equipe 
 // front
-Route::get('/equipe/masculine', [EquipeController::class, 'index_masculin'])->name('equipe.masculin.index');
+Route::get('/equipe/masculine', [EquipeController::class, 'index_masculin'])
+    ->middleware([AdminVerification::class])
+    ->name('equipe.masculin.index');
 Route::get('/equipe/feminine', [EquipeController::class, 'index_feminin'])->name('equipe.feminin.index');
 Route::get('/equipe/mixed', [EquipeController::class, 'index_mixte'])->name('equipe.mixte.index');
 Route::get('/equipe/{id}/show', [EquipeController::class, 'show'])->name('equipe.show');
