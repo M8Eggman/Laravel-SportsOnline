@@ -50,7 +50,7 @@ class EquipeController extends Controller
     public function show($id)
     {
         $equipe = Equipe::with(['genre', 'continent', 'joueur'])->findOrFail($id);
-        return view('back.equipe.show', compact('equipe'));
+        return view('front.equipe.show', compact('equipe'));
     }
 
     public function show_back($id)
