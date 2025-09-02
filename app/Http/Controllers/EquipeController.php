@@ -13,12 +13,29 @@ class EquipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index_front()
+    public function index_masculin()
     {
-        $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
+        $equipes = Equipe::whereHas('genre', fn($q) => $q->where('name', 'Masculin'))->get();
+
         return view('front.equipe.index', compact('equipes'));
     }
-    public function index_back(){
+
+    public function index_feminin()
+    {
+        $equipes = Equipe::whereHas('genre', fn($q) => $q->where('name', 'Feminin'))->get();
+
+        return view('front.equipe.index', compact('equipes'));
+    }
+
+    public function index_mixte()
+    {
+        $equipes = Equipe::whereNull('genre_id')->get();
+
+        return view('front.equipe.index', compact('equipes'));
+    }
+
+    public function index_back()
+    {
 
         $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
         $genres = Genre::all();
@@ -26,11 +43,17 @@ class EquipeController extends Controller
         $joueurs = Joueur::all();
         return view('back.equipe.index', compact('equipes'));
     }
-    
+
     /**
      * Display the specified resource.
      */
     public function show($id)
+    {
+        $equipe = Equipe::with(['genre', 'continent', 'joueur'])->findOrFail($id);
+        return view('back.equipe.show', compact('equipe'));
+    }
+
+    public function show_back($id)
     {
         $equipe = Equipe::with(['genre', 'continent', 'joueur'])->findOrFail($id);
         return view('back.equipe.show', compact('equipe'));
@@ -77,7 +100,7 @@ class EquipeController extends Controller
         $genres = Genre::all();
         $continents = Continent::all();
         $joueurs = Joueur::where('equipe_id', $id)->get();
-        
+
         return view('back.equipe.edit', compact('equipe', 'genres', 'continents', 'joueurs'));
     }
 

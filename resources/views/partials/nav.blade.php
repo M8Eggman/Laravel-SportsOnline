@@ -28,17 +28,20 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
             <li>
-              <a class="dropdown-item {{ request()->is('equipe/feminine*') ? 'active' : '' }}" href="">
-                Feminine
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item {{ request()->is('equipe/masculine*') ? 'active' : '' }}" href="">
+              <a class="dropdown-item {{ request()->is('equipe/masculine*') ? 'active' : '' }}"
+                href="{{ route('equipe.masculin.index') }}">
                 Masculine
               </a>
             </li>
             <li>
-              <a class="dropdown-item {{ request()->is('equipe/mixed*') ? 'active' : '' }}" href="">
+              <a class="dropdown-item {{ request()->is('equipe/feminine*') ? 'active' : '' }}"
+                href="{{ route('equipe.feminin.index') }}">
+                Feminine
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item {{ request()->is('equipe/mixed*') ? 'active' : '' }}"
+                href="{{ route('equipe.mixte.index') }}">
                 Mixed
               </a>
             </li>

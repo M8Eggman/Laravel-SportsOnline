@@ -44,7 +44,9 @@ class JoueurController extends Controller
     public function create()
     {
         $positions = Position::all();
-        $equipes = Equipe::all();
+        $equipes = Equipe::withCount('joueur')
+            ->having('joueur_count', '<=', 7)
+            ->get();
         $genres = Genre::all();
         return view('back.joueur.create', compact('positions', 'equipes', 'genres'));
     }
