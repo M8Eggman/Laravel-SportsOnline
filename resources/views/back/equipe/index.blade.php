@@ -7,7 +7,7 @@
         <h1>Teams</h1>
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h1>Liste des Équipes</h1>
+                <h2>Liste des Équipes</h2>
                 <a href="{{ route('back.equipe.create') }}" class="btn btn-primary">Créer une équipe</a>
             </div>
 

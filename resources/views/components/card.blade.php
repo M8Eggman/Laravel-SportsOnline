@@ -13,7 +13,17 @@
         <h5 class="card-title mb-1">{{ $title }}</h5>
         <p class="card-text mb-2">{{ $subtitle }}</p>
         @if($link)
-            <a href="{{ $link }}" class="btn btn-primary btn-sm">See More</a>
+
+            <div
+            aria-label="User Login Button"
+            tabindex="0"
+            role="button"
+            class="user-profile"
+            >
+                <div class="user-profile-inner">
+                    <a href="{{ $link }}">See More</a>
+                </div>
+            </div>
         @endif
     </div>
 </div>
