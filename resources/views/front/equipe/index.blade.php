@@ -11,12 +11,18 @@
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $equipe->nom }}</h5>
-                    <p class="card-text">{{ $equipe->description ?? 'Description non disponible' }}</p>
+                    <h5 class="card-title">{{ $equipe->name }}</h5>
+                    @if($equipe->joueur)
+                    @foreach ($equipe->joueur as $j )
+                    
+                    <p class="card-text">{{ $j->last_name }}</p>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>
         @endforeach
+        <a href="{{ route('equipe.index') }}">Administration des équipes</a>
     </div>
 </div>
 @endsection

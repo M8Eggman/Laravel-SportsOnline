@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'home'])->name('accueil');
 
 Route::resource('continent', ContinentController::class);
-// Route::resource('equipe', EquipeController::class);
 Route::resource('genre', GenreController::class);
 Route::resource('position', PositionController::class);
 Route::resource('role', RoleController::class);
+// Routes publiques (front)
+Route::get('/equipe', [EquipeController::class, 'index_front'])->name('front.equipe.index');
 
-Route::get('/equipe', [EquipeController::class, 'index']);
+// Routes admin (back)  
+Route::prefix('back')->group(function () {
+    Route::resource('equipe', EquipeController::class);
+});
 
 // route joueur
 Route::get('/back/joueur', [JoueurController::class, 'index_back'])->name('back.joueur.index');

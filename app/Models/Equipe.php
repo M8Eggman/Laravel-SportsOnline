@@ -10,7 +10,7 @@ class Equipe extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'city','genre'
+        'name', 'city', 'genre_id', 'continent_id'
     ];
 
     public function continent(){
