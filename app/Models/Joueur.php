@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Joueur extends Model
 {
     use HasFactory;
-    protected $factory =[
+    protected $fillable =[
         'first_name','last_name', 'age', 'phone', 'email', 'city'
     ];
 
     public function photo(){
         return $this->hasOne(Photo::class, 'joueur_id');
     }
-
     public function equipe(){
         return $this->belongsTo(Equipe::class);
     }

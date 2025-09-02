@@ -9,11 +9,12 @@ class Photo extends Model
 {
     use HasFactory;
 
-    protected $factory = [
+    protected $fillable = [
         'src'
     ];
 
-    public function joueur(){
+    public function joueur()
+    {
         return $this->belongsTo(Joueur::class);
     }
 }
