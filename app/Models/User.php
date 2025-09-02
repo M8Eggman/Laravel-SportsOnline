@@ -51,7 +51,7 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
-    
+
     protected function joueur()
     {
         return $this->hasMany(Joueur::class);
