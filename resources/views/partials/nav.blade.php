@@ -51,18 +51,20 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         @if (Route::has('login'))
           @auth
+            <li class="nav-item">
+              <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="nav-link">Logout</button>
+              </form>
+            </li>
           @else
             <li class="nav-item">
-              <a href="{{ route('login') }}" class="nav-link">
-                <i class="bi bi-box-arrow-in-right"></i> Log in
-              </a>
+              <a href="{{ route('login') }}" class="nav-link">Log in</a>
             </li>
 
             @if (Route::has('register'))
               <li class="nav-item">
-                <a href="{{ route('register') }}" class="nav-link">
-                  <i class="bi bi-person-plus"></i> Register
-                </a>
+                <a href="{{ route('register') }}" class="nav-link">Register</a>
               </li>
             @endif
           @endauth
