@@ -1,5 +1,5 @@
 .user-profile {
-  width: 131px;
+  width: 200px;
   height: 51px;
   border-radius: 15px;
   cursor: pointer;
@@ -23,7 +23,7 @@
 }
 
 .user-profile-inner {
-  width: 127px;
+  width: 198px;
   height: 47px;
   border-radius: 13px;
   background-color: #ffffff;
@@ -34,9 +34,29 @@
   color: #fff;
   font-weight: 600;
 }
+.user-profile-inner a{
+    color: rgba(0, 0, 0, 0.70);
+}
+.user-profile-inner a:hover{
+    color: rgba(0, 0, 0);
+}
 
 .user-profile-inner svg {
   width: 27px;
   height: 27px;
   fill: #fff;
+}
+
+.btn_modify {
+    width: 120px;
+    height: 50px;
+    background-color: rgb(255, 161, 169);
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    top: 5px;
+    right: 5px;
+    position: absolute;
+    border: solid, rgb(255, 68, 84), 1px;
+    text-align: center;
+    
 }
