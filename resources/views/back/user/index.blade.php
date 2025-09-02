@@ -22,7 +22,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($users) > 0)
+                        @if (count($users) <= 0)
                             <tr>
                                 <td colspan="7" class="text-center text-muted py-4">Aucun utilisateur trouvé</td>
                             </tr>
