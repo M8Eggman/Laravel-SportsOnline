@@ -11,7 +11,7 @@
 <body>
     @include('partials.nav')
 
-    <main>
+    <main class="bg-main-dark">
         @yield('content')
     </main>
 

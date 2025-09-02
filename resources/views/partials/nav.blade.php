@@ -46,7 +46,16 @@
             </li>
           </ul>
         </li>
+        @canany(['isAdmin', 'isCoach'])
+          <li class="nav-item">
+            <a class="nav-link {{ request()->is('joueur*') ? 'active' : '' }}"
+              href="{{ route('back.equipe.create') }}">Create A Team</a>
+          </li>
+        @endcanany
       </ul>
+
+
+      {{-- bouton de connexion/inscription --}}
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         @if (Route::has('login'))
           @auth
