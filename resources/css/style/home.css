@@ -1,0 +1,73 @@
+.layout_front {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background de base avec opacité réduite */
+.layout_front::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    
+    background: url('https://i.redd.it/iyaacpwpwfr41.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    background-attachment: fixed;
+    
+    opacity: 0.4; /* Fond toujours visible mais transparent */
+}
+
+/* Zone révélée sous la souris */
+.layout_front::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    
+    background: url('https://i.redd.it/iyaacpwpwfr41.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    background-attachment: fixed;
+    
+    /* Masque circulaire qui suit la souris */
+    -webkit-mask: radial-gradient(circle 450px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 120px, transparent 450px);
+    mask: radial-gradient(circle 450px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 120px, transparent 450px);
+    
+    opacity: 1; /* Zone révélée à 100% */
+}
+
+
+.section_b{
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.section_a h2{
+    color: white;
+    padding-top: 50px;
+}
+.section_b h2{
+    color: white;
+    padding-top: 50px;
+}
+
+.titre_home{
+    font-size: 50pt;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-shadow: 
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
