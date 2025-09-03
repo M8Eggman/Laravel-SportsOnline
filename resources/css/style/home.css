@@ -1,0 +1,12 @@
+
+.layout_front {
+    background: url('https://i.guim.co.uk/img/media/d5eab25b9cd2a38580bf8a13e7756b2eb27e6a5d/79_167_1047_628/master/1047.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=ce125ace8778a533f1d1e5b2c40dba0c');
+ background-size: 100px 100px; /* Plus petit = plus pixellisé */
+    background-repeat: repeat;
+    
+    /* PIXELLISATION */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    
+    min-height: 100vh;}

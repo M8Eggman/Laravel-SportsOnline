@@ -7,7 +7,7 @@
 ])
 
     <div class="card h-100 d-flex flex-column justify-content-between rounded-2">
-        <div class="d-flex justify-content-center align-items-center" style="height: 300px;">
+        <div class="d-flex justify-content-center align-items-center card_div_img" style="height: 300px;">
             <img src="{{ $image ?? 'https://placehold.co/400' }}" class="card_img" alt="">
         </div>
             @if ($element)

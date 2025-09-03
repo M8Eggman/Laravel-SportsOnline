@@ -15,8 +15,10 @@
 <body>
     @include('partials.nav')
 
-    <main class="bg-main-dark">
+    <main class="layout_front">
+    
         @yield('content')
+
     </main>
 
     @include('partials.footer')
