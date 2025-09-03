@@ -77,6 +77,21 @@ class JoueurController extends Controller
             'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
         ]);
 
+        // récupère l'équipe si le joueur crée en a une
+        $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
+
+        // vérifie si equipe existe et si l'équipe a un genre défini
+        if ($equipe && $equipe->genre_id) {
+            // si le joueur n'a pas de genre ou qu'il ne correspond pas au genre de l'equipe
+            if ($request->genre_id === null || $request->genre_id != $equipe->genre_id) {
+                // on retourne avec une erreur est l'inpute form pre rempli
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
+            }
+        }
+
         $joueur = new Joueur();
         $joueur->first_name = $request->first_name;
         $joueur->last_name = $request->last_name;
@@ -150,6 +165,21 @@ class JoueurController extends Controller
 
         if (!Gate::allows('update-joueur', $joueur)) {
             return redirect('/');
+        }
+
+        // récupère l'équipe si le joueur crée en a une
+        $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
+
+        // vérifie si equipe existe et si l'équipe a un genre défini
+        if ($equipe && $equipe->genre_id) {
+            // si le joueur n'a pas de genre ou qu'il ne correspond pas au genre de l'equipe
+            if ($request->genre_id === null || $request->genre_id != $equipe->genre_id) {
+                // on retourne avec une erreur est l'inpute form pre rempli
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
+            }
         }
 
         $joueur->first_name = $request->first_name;
