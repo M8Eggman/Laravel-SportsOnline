@@ -58,8 +58,9 @@
     position: absolute;
     border: solid, rgb(255, 68, 84), 1px;
     text-align: center;
-    
+    align-content: center;
 }
+
 .btn_modify:hover {
     width: 120px;
     color: rgb(255, 255, 255);

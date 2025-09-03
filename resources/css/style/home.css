@@ -45,19 +45,29 @@
     opacity: 1; /* Zone révélée à 100% */
 }
 
-/* .section_a{
-    background-color: black;
-} */
 
 .section_b{
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     margin-bottom: 15px;
 }
+
+.section_a h2{
+    color: white;
+    padding-top: 50px;
+}
 .section_b h2{
     color: white;
-    padding-top: 15px;
+    padding-top: 50px;
 }
-h2{
-    color: white;
+
+.titre_home{
+    font-size: 50pt;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-shadow: 
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
 }

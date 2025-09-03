@@ -27,6 +27,7 @@
     </div>
 
     <section class="container py-5 section_a">
+        <h1 class="titre_home">Our Teams</h1>
         <h2 class="mb-4">European Teams</h2>
         <div class="row g-4">
             @foreach ($europeTeams as $t)
