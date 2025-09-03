@@ -24,7 +24,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Fnatic',
                 'city' => 'Londres',
-                'url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvKsT2I_cdKtKKhkMrdVtGCTnvJIORfGoEsw&s',
+                'src' => 'seeder_equipe_photos/fnatic.jpg',
                 'genre_id' => $masculin,
                 'continent_id' => Continent::where('name', 'Europe')->first()->id,
                 'user_id' => User::first()->id
@@ -32,7 +32,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Gambit Esports',
                 'city' => 'Moscou',
-                'url' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Gambit_Esports_2020_logo.svg/1200px-Gambit_Esports_2020_logo.svg.png',
+                'src' => 'seeder_equipe_photos/gambit_esports.jpg',
                 'genre_id' => $masculin,
                 'continent_id' => Continent::where('name', 'CIS')->first()->id,
                 'user_id' => User::first()->id
@@ -40,7 +40,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Sentinels',
                 'city' => 'Los Angeles',
-                'url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzi5O4G48EVu4WG2ote3S9KJUlkkHKM96Rpg&s',
+                'src' => 'seeder_equipe_photos/sentinels.png',
                 'genre_id' => $feminin,
                 'continent_id' => Continent::where('name', 'Americas')->first()->id,
                 'user_id' => User::first()->id
@@ -48,7 +48,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'ORDER',
                 'city' => 'Sydney',
-                'url' => 'https://www.thespike.gg/_next/image?url=https%3A%2F%2Fcdn.thespike.gg%2FTeams%2525204%252Forder_1643360809620.png&w=640&q=75',
+                'src' => 'seeder_equipe_photos/order.png',
                 'genre_id' => $feminin,
                 'continent_id' => Continent::where('name', 'Oceania')->first()->id,
                 'user_id' => User::first()->id
@@ -56,7 +56,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Vision Strikers',
                 'city' => 'Séoul',
-                'url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhbH1jkdsCNB1PL8qlWlP-ErAZA8R65NtXDg&s',
+                'src' => 'seeder_equipe_photos/vision_strikers.png',
                 'genre_id' => $mixte,
                 'continent_id' => Continent::where('name', 'Asia')->first()->id,
                 'user_id' => User::first()->id
@@ -64,7 +64,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Anubis Gaming',
                 'city' => 'Le Caire',
-                'url' => 'https://owcdn.net/img/61b99de181b2e.png',
+                'src' => 'seeder_equipe_photos/anubis_gaming.png',
                 'genre_id' => $mixte,
                 'continent_id' => Continent::where('name', 'Africa & Middle East')->first()->id,
                 'user_id' => User::first()->id

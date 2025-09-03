@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name')->unique();
             $table->string('city');
-            $table->string('url')->nullable();
+            $table->string('src')->nullable();
             $table->foreignId('continent_id')->nullable()->constrained('continents')->nullOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('genre_id')->nullable()->constrained('genres')->nullOnDelete();

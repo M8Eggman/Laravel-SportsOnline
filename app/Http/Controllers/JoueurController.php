@@ -46,7 +46,7 @@ class JoueurController extends Controller
     {
         $positions = Position::all();
         $equipes = Equipe::withCount('joueur')
-            ->having('joueur_count', '<=', 7)
+            ->having('joueur_count', '<', 7)
             ->get();
         $genres = Genre::all();
         return view('back.joueur.create', compact('positions', 'equipes', 'genres'));
@@ -118,7 +118,9 @@ class JoueurController extends Controller
         }
 
         $positions = Position::all();
-        $equipes = Equipe::all();
+        $equipes = Equipe::withCount('joueur')
+            ->having('joueur_count', '<', 7)
+            ->get();
         $genres = Genre::all();
         return view('back.joueur.edit', compact('joueur', 'positions', 'equipes', 'genres'));
     }
@@ -195,7 +197,7 @@ class JoueurController extends Controller
         if (!Gate::allows('update-joueur', $joueur)) {
             return redirect('/');
         }
-        
+
         $joueur->delete();
 
         return redirect()->route('back.joueur.index')->with('success', 'Joueur supprimé !');
