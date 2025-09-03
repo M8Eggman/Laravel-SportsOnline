@@ -66,12 +66,12 @@ class JoueurController extends Controller
     public function store(StoreJoueurRequest $request)
     {
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:50'],
+            'last_name' => ['required', 'string', 'max:50'],
             'age' => ['required', 'integer', 'min:16', 'max:60'],
             'phone' => ['nullable', 'string', 'max:20'],
             'email' => ['nullable', 'email', 'max:255', 'unique:joueurs,email'],
-            'city' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:100'],
             'position_id' => ['required', 'integer', 'exists:positions,id'],
             'equipe_id' => ['nullable', 'integer', 'exists:equipes,id'],
             'genre_id' => ['nullable', 'integer', 'exists:genres,id'],

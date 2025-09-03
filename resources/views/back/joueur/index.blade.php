@@ -20,8 +20,8 @@
                 <tr>
                     <th>#</th>
                     <th>Photo</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
+                    <th style="width:15%;">Last Name</th>
+                    <th style="width:15%;">First Name</th>
                     <th>Position</th>
                     <th>Team</th>
                     <th>Age</th>
@@ -94,9 +94,9 @@
                     <tr>
                         <td>{{ $joueur->id }}</td>
                         <td>
-                            <div style="display:flex; justify-content:center;">
-                                <img src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}"
-                                    class="rounded-circle object-fit-cover" style="max-width:50px; max-height:50px;">
+                            <div class="table-img">
+                                <img
+                                    src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}">
                             </div>
                         </td>
                         <td>{{ $joueur->last_name }}</td>

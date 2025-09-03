@@ -69,8 +69,8 @@ class EquipeController extends Controller
     public function store(StoreEquipeRequest $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:25'],
+            'city' => ['required', 'string', 'max:100'],
             'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
             'continent_id' => ['required', 'exists:continents,id'],
@@ -125,8 +125,8 @@ class EquipeController extends Controller
     public function update(UpdateEquipeRequest $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:25'],
+            'city' => ['required', 'string', 'max:50'],
             'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
             'continent_id' => ['required', 'exists:continents,id'],
