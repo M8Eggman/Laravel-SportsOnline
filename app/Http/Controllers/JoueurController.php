@@ -19,11 +19,15 @@ class JoueurController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($genre)
     {
-        $joueurs = Joueur::all();
+        $joueurs = $genre == 'See All'
+            ? Joueur::all()
+            : Joueur::whereHas('genre', fn($q) => $q->where('name', $genre))->get();
+
         return view('front.joueur.index', compact('joueurs'));
     }
+
     public function index_back()
     {
         $joueurs = Joueur::all();
