@@ -31,7 +31,7 @@
         <div class="row g-4">
             @foreach ($europeTeams as $t)
                 <div class="col-md-3">
-                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->url ? $t->url : null" :link="route('equipe.show', $t->id)" :element="$t" />
+                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? $t->src : null" :link="route('equipe.show', $t->id)" :element="$t" />
                 </div>
             @endforeach
         </div>
@@ -52,7 +52,7 @@
         <div class="row g-4">
             @foreach ($notEuropeTeams as $t)
                 <div class="col-3">
-                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->url ? $t->url : null" :link="route('equipe.show', $t->id)" :element="$t" />
+                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? $t->src : null" :link="route('equipe.show', $t->id)" :element="$t" />
                 </div>
             @endforeach
         </div>
