@@ -45,7 +45,7 @@
 
                         <div class="mt-3">
                             <a onclick="history.back();" class="btn btn-secondary">Back</a>
-                            @canany(['isAdmin', 'isCoach'])
+                            @canany(['isAdmin', 'update-joueur'], $joueur)
                                 <a href="{{ route('back.joueur.edit', $joueur->id) }}" class="btn btn-warning">Edit Player</a>
                             @endcanany
                         </div>
