@@ -70,7 +70,7 @@
 									href="{{ route('back.equipe.index') }}">See All Teams</a>
 							</li>
 							<li>
-								<a class="dropdown-item {{ request()->is('back/joueur/create') ? 'active' : '' }}"
+								<a class="dropdown-item {{ request()->is('back/equipe/create') ? 'active' : '' }}"
 									href="{{ route('back.equipe.create') }}">Create Team</a>
 							</li>
 						</ul>
@@ -107,7 +107,7 @@
 								data-bs-toggle="dropdown" aria-expanded="false">
 								{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
 							</a>
-							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+							<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="userDropdown">
 								<li>
 									<form method="POST" action="{{ route('logout') }}">
 										@csrf
