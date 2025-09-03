@@ -13,13 +13,13 @@
     bottom: 0;
     z-index: -2;
     
-    background: url('https://www.declicinfo.com/external_files/media/game-mirip-valorant-valorant-banner-acerid.jpg');
+    background: url('https://i.redd.it/iyaacpwpwfr41.png');
     background-size: cover;
     background-repeat: no-repeat;
     image-rendering: pixelated;
     background-attachment: fixed;
     
-    opacity: 0.5; /* Fond toujours visible mais transparent */
+    opacity: 0.4; /* Fond toujours visible mais transparent */
 }
 
 /* Zone révélée sous la souris */
@@ -32,7 +32,7 @@
     bottom: 0;
     z-index: -1;
     
-    background: url('https://www.declicinfo.com/external_files/media/game-mirip-valorant-valorant-banner-acerid.jpg');
+    background: url('https://i.redd.it/iyaacpwpwfr41.png');
     background-size: cover;
     background-repeat: no-repeat;
     image-rendering: pixelated;
