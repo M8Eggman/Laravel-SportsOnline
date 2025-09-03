@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 10px;
 }
 
 .user-profile:hover,
@@ -53,8 +54,8 @@
     background-color: rgb(255, 161, 169);
     border-radius: 5px;
     color: rgba(255, 255, 255, 0.75);
-    top: 5px;
-    right: 5px;
+    top: 8px;
+    right: 8px;
     position: absolute;
     border: solid, rgb(255, 68, 84), 1px;
     text-align: center;
@@ -62,16 +63,7 @@
 }
 
 .btn_modify:hover {
-    width: 120px;
-    color: rgb(255, 255, 255);
-    height: 50px;
     background-color: rgb(255, 68, 84);
-    border-radius: 5px;
     color: rgb(255, 255, 255);
-    top: 5px;
-    right: 5px;
-    position: absolute;
-    border: solid, rgb(255, 68, 84), 1px;
-    text-align: center;
     
 }

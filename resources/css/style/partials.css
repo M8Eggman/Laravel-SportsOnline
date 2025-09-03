@@ -13,7 +13,6 @@ footer{
 
 .players .card {
     transition: all 0.2s ease-out;
-    filter: brightness(0.9);
 }
 
 .players .card:hover {
