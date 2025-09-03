@@ -2,55 +2,50 @@
 
 @section('title', $equipe->name)
 
+
 @section('content')
-    <div class="container p-5">
-        <div class="card border-0">
-            <div class="d-flex g-3">
-                <div class="d-flex justify-content-center" style="max-width: 300px;">
-                    <img src="{{ $equipe->src ? $equipe->src : 'https://placehold.co/300' }}" class="img-fluid" alt="">
-                </div>
-                <div>
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
-                            <h2 class="card-title">{{ $equipe->name }}</h2>
-                            <p><strong>City:</strong> {{ $equipe->city }}</p>
-                            <p><strong>Continent:</strong> {{ $equipe->continent?->name ?? 'Not specified' }}</p>
-                            <p>
-                                <strong>Type:</strong>
-                                @if($equipe->genre?->name == 'masculin')
-                                    Masculine
-                                @elseif($equipe->genre?->name == 'feminin')
-                                    Feminine
-                                @else
-                                    Mixed
+    <div class="container mt-4">
+           <div class="team_one">
+               <h2>{{ $equipe->name }}</h2>
+               <p>{{ $equipe->city }}</p>
+               @if($equipe->genre)
+                   <span>{{ ucfirst($equipe->genre->name) }}</span>
+               @endif
+
+               @if($equipe->joueur && $equipe->joueur->count() > 0)
+                   @foreach ($equipe->joueur as $joueur)
+                        <div class="team_player_one">
+                            <div class="team_img_one">
+                                @if($joueur->photo && $joueur->photo->src)
+                                <img src="{{ Storage::url($joueur->photo->src) }}" alt="{{ $joueur->first_name }}" >
                                 @endif
-                            </p>
-                            @canany(['isAdmin', 'isCoach'])
-                                <p>
-                                    <strong>Created by:</strong>
-                                    {{ $equipe->user?->first_name }} {{ $equipe->user?->last_name  }}
-                                </p>
-                            @endcanany
-                            <div class="d-flex flex-wrap gap-2">
-                                <p><strong>Players ({{ $equipe->joueur->count() }}):</strong></p>
-                                @if($equipe->joueur->count() > 0)
-                                    @foreach($equipe->joueur as $joueur)
-                                        <a href="{{ route('joueur.show', $joueur->id) }}" class="text-black text-decoration-none">
-                                            {{ $joueur->first_name }} {{ $joueur->last_name }}
-                                        </a>
-                                    @endforeach
-                                @endif
+                                <h4><span>{{ $joueur->last_name }}</span> {{ $joueur->first_name }}</h4>
+
                             </div>
-                        </div>
-                        <div class="mt-3">
-                            <a onclick="history.back();" class="btn btn-secondary">Back</a>
-                            @canany(['isAdmin', 'update-equipe'], $equipe)
-                                <a href="{{ route('back.equipe.edit', $equipe->id) }}" class="btn btn-warning">Edit Team</a>
-                            @endcanany
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                           <div class="player_info_one">
+                                @if($joueur->position)
+                                <p><small>Position:</small> {{ $joueur->position->name }}</p>
+                                @endif
+                                <p><small>Age:</small> {{ $joueur->age }} ans</p>
+                                <p><small>Ville:</small> {{ $joueur->city }}</p>
+                                @if($joueur->genre)
+                                <p><small>Genre:</small> {{ $joueur->genre->name }}</p>
+                                @endif
+                                @if($joueur->equipe)
+                                <p><small>Continent:</small> {{ $joueur->equipe->continent->name }}</p>
+                                @endif
+                           </div>
+
+                       </div>
+                   @endforeach
+               @else
+                   <p>Aucun joueur dans cette équipe</p>
+               @endif
+
+               <p>{{ $equipe->joueur->count() }} joueurs</p>
+               @if($equipe->continent)
+                   <p>{{ $equipe->continent->name }}</p>
+               @endif
+           </div>
+   </div>
 @endsection
