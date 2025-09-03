@@ -23,20 +23,21 @@ class JoueurSeeder extends Seeder
         // crée une photo selon le path et retourne l'id correspondant
         function getRandomPhotoId($id, $path)
         {
-            $files = Storage::files($path);
-
+            $files = Storage::disk('public')->allFiles($path);
+            $file = count($files) ? $files[array_rand($files)] : null;
+            
             return Photo::factory()->create([
                 'joueur_id' => $id,
-                'src' => count($files) ? Storage::url($files[array_rand($files)]) : null,
+                'src' => $file,
             ])->id;
         }
 
         foreach ($equipes as $e) {
             // selon le genre de l'équipe choisis le bon dossier
-            $path = match ($e->genre) {
-                'masculin' => 'public/seeder_player_photos/masculin',
-                'feminin' => 'public/seeder_player_photos/feminin',
-                default => 'public/seeder_player_photos',
+            $path = match ($e->genre?->name) {
+                'masculin' => 'seeder_player_photos/masculin',
+                'feminin' => 'seeder_player_photos/feminin',
+                default => 'seeder_player_photos',
             };
 
             // 2 joueurs pour la première position
@@ -67,6 +68,10 @@ class JoueurSeeder extends Seeder
             }
         }
 
-        Joueur::factory()->has(Photo::factory())->count(10)->create();
+        // crée 20 joueur sans equipes et le lie a une photo
+        for ($i = 0; $i < 20; $i++) {
+            $joueur = Joueur::factory()->create();
+            getRandomPhotoId($joueur->id, $path);
+        }
     }
 }
