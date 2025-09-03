@@ -72,7 +72,7 @@ class EquipeController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
-            'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
             'continent_id' => ['required', 'exists:continents,id'],
         ]);
@@ -128,7 +128,7 @@ class EquipeController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
-            'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
             'continent_id' => ['required', 'exists:continents,id'],
         ]);
