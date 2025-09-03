@@ -24,7 +24,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Fnatic',
                 'city' => 'Londres',
-                'src' => '',
+                'src' => 'seeder_equipe_photos/fnatic.jpg',
                 'genre_id' => $masculin,
                 'continent_id' => Continent::where('name', 'Europe')->first()->id,
                 'user_id' => User::first()->id
@@ -32,7 +32,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Gambit Esports',
                 'city' => 'Moscou',
-                'src' => '',
+                'src' => 'seeder_equipe_photos/gambit_esports.jpg',
                 'genre_id' => $masculin,
                 'continent_id' => Continent::where('name', 'CIS')->first()->id,
                 'user_id' => User::first()->id
@@ -40,7 +40,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Sentinels',
                 'city' => 'Los Angeles',
-                'src' => '',
+                'src' => 'seeder_equipe_photos/sentinels.png',
                 'genre_id' => $feminin,
                 'continent_id' => Continent::where('name', 'Americas')->first()->id,
                 'user_id' => User::first()->id
@@ -48,7 +48,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'ORDER',
                 'city' => 'Sydney',
-                'src' => '',
+                'src' => 'seeder_equipe_photos/order.png',
                 'genre_id' => $feminin,
                 'continent_id' => Continent::where('name', 'Oceania')->first()->id,
                 'user_id' => User::first()->id
@@ -56,7 +56,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Vision Strikers',
                 'city' => 'Séoul',
-                'src' => '',
+                'src' => 'seeder_equipe_photos/vision_strikers.png',
                 'genre_id' => $mixte,
                 'continent_id' => Continent::where('name', 'Asia')->first()->id,
                 'user_id' => User::first()->id
@@ -64,7 +64,7 @@ class EquipeSeeder extends Seeder
             [
                 'name' => 'Anubis Gaming',
                 'city' => 'Le Caire',
-                'src' => '',
+                'src' => 'seeder_equipe_photos/anubis_gaming.png',
                 'genre_id' => $mixte,
                 'continent_id' => Continent::where('name', 'Africa & Middle East')->first()->id,
                 'user_id' => User::first()->id
