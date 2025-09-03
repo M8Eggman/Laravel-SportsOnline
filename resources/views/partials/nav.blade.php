@@ -21,7 +21,7 @@
 						Players
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-						@foreach(['male', 'female', 'See All'] as $genre)
+						@foreach(['male', 'female', 'Not specified', 'See All'] as $genre)
 							<li>
 								<a href="{{ route('joueur.index', ['genre' => $genre]) }}"
 									class="dropdown-item {{ request()->is("joueur/{$genre}") ? 'active' : '' }}">

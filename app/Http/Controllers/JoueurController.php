@@ -21,9 +21,12 @@ class JoueurController extends Controller
      */
     public function index($genre)
     {
-        $joueurs = $genre == 'See All'
-            ? Joueur::all()
-            : Joueur::whereHas('genre', fn($q) => $q->where('name', $genre))->get();
+        $joueurs = match ($genre) {
+            'See All' => Joueur::all(),
+            default => Joueur::whereHas('genre', function ($q) use ($genre) {
+                    $q->where('name', $genre);
+                })->orWhereNull('genre_id')->get(),
+        };
 
         return view('front.joueur.index', compact('joueurs'));
     }

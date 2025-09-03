@@ -20,9 +20,12 @@ class EquipeController extends Controller
      */
     public function index($continent)
     {
-        $equipes = $continent == 'See All'
-            ? Equipe::all()
-            : Equipe::whereHas('continent', fn($q) => $q->where('name', $continent))->get();
+        $equipes = match ($continent) {
+            'See All' => Equipe::all(),
+            default => Equipe::whereHas('continent', function ($q) use ($continent) {
+                    $q->where('name', $continent);
+                })->orWhereNull('continent_id')->get(),
+        };
 
         return view('front.equipe.index', compact('equipes'));
     }
@@ -71,7 +74,7 @@ class EquipeController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
-            'continent_id' => ['nullable', 'exists:continents,id'],
+            'continent_id' => ['required', 'exists:continents,id'],
         ]);
 
         $equipe = new Equipe();
@@ -127,7 +130,7 @@ class EquipeController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
-            'continent_id' => ['nullable', 'exists:continents,id'],
+            'continent_id' => ['required', 'exists:continents,id'],
         ]);
 
         $equipe = Equipe::findOrFail($id);
