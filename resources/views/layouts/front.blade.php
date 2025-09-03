@@ -22,6 +22,13 @@
     </main>
 
     @include('partials.footer')
+     
+    <script>
+        document.onmousemove = e => {
+                document.querySelector('.layout_front').style.setProperty('--mouse-x', e.clientX + 'px');
+                document.querySelector('.layout_front').style.setProperty('--mouse-y', e.clientY + 'px');
+        }
+    </script>
 </body>
 
 </html>

@@ -1,12 +1,46 @@
-
 .layout_front {
-    background: url('https://i.guim.co.uk/img/media/d5eab25b9cd2a38580bf8a13e7756b2eb27e6a5d/79_167_1047_628/master/1047.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=ce125ace8778a533f1d1e5b2c40dba0c');
- background-size: 100px 100px; /* Plus petit = plus pixellisé */
-    background-repeat: repeat;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background de base avec opacité réduite */
+.layout_front::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
     
-    /* PIXELLISATION */
+    background: url('https://www.declicinfo.com/external_files/media/game-mirip-valorant-valorant-banner-acerid.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
+    background-attachment: fixed;
     
-    min-height: 100vh;}
+    opacity: 0.5; /* Fond toujours visible mais transparent */
+}
+
+/* Zone révélée sous la souris */
+.layout_front::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    
+    background: url('https://www.declicinfo.com/external_files/media/game-mirip-valorant-valorant-banner-acerid.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    background-attachment: fixed;
+    
+    /* Masque circulaire qui suit la souris */
+    -webkit-mask: radial-gradient(circle 450px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 120px, transparent 450px);
+    mask: radial-gradient(circle 450px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 120px, transparent 450px);
+    
+    opacity: 1; /* Zone révélée à 100% */
+}
