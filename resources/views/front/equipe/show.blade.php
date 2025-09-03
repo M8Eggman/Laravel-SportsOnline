@@ -6,11 +6,20 @@
 @section('content')
     <div class="container mt-4">
            <div class="team_one">
+                <div class="div_team_img">
+                    <img src="{{ Storage::url($equipe->src) }}" alt="">
+                </div>
+
                <h2>{{ $equipe->name }}</h2>
-               <p>{{ $equipe->city }}</p>
-               @if($equipe->genre)
-                   <span>{{ ucfirst($equipe->genre->name) }}</span>
-               @endif
+               <h4>{{ $equipe->city }}</h4>
+               <div class="div_team_titre">
+                    @if($equipe->genre)
+                    <span class="spanee">Equipe {{ ucfirst($equipe->genre->name) }}e</span>
+                    @endif
+                    @if($equipe->continent)
+                    <p class="team_conti">{{ $equipe->continent->name }}</p>
+                    @endif
+               </div>
 
                @if($equipe->joueur && $equipe->joueur->count() > 0)
                    @foreach ($equipe->joueur as $joueur)
@@ -19,33 +28,20 @@
                                 @if($joueur->photo && $joueur->photo->src)
                                 <img src="{{ Storage::url($joueur->photo->src) }}" alt="{{ $joueur->first_name }}" >
                                 @endif
-                                <h4><span>{{ $joueur->last_name }}</span> {{ $joueur->first_name }}</h4>
-
+                                <div>
+                                    <h4><span class="spane">{{ $joueur->last_name }}</span> {{ $joueur->first_name }}</h4>
+                                    @if($joueur->position)
+                                    <p><small>Position:</small><span style="text-transform:uppercase"> {{ $joueur->position->name }}</span></p>
+                                    @endif
+                                </div>
                             </div>
-                           <div class="player_info_one">
-                                @if($joueur->position)
-                                <p><small>Position:</small> {{ $joueur->position->name }}</p>
-                                @endif
-                                <p><small>Age:</small> {{ $joueur->age }} ans</p>
-                                <p><small>Ville:</small> {{ $joueur->city }}</p>
-                                @if($joueur->genre)
-                                <p><small>Genre:</small> {{ $joueur->genre->name }}</p>
-                                @endif
-                                @if($joueur->equipe)
-                                <p><small>Continent:</small> {{ $joueur->equipe->continent->name }}</p>
-                                @endif
-                           </div>
-
                        </div>
                    @endforeach
                @else
                    <p>Aucun joueur dans cette équipe</p>
                @endif
+                <p class="spanee">{{ $equipe->joueur->count() }} joueurs</p>
 
-               <p>{{ $equipe->joueur->count() }} joueurs</p>
-               @if($equipe->continent)
-                   <p>{{ $equipe->continent->name }}</p>
-               @endif
            </div>
    </div>
 @endsection
