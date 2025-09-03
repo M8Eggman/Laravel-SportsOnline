@@ -18,6 +18,7 @@ Route::get('/', [HomeController::class, 'home'])->name('accueil');
 
 // Routes equipe 
 // front
+Route::get('/equipe', [EquipeController::class, 'index'])->name('equipe.index');
 Route::get('/equipe/masculine', [EquipeController::class, 'index_masculin'])->name('equipe.masculin.index');
 Route::get('/equipe/feminine', [EquipeController::class, 'index_feminin'])->name('equipe.feminin.index');
 Route::get('/equipe/mixed', [EquipeController::class, 'index_mixte'])->name('equipe.mixte.index');

@@ -7,7 +7,7 @@
         <div class="card border-0">
             <div class="d-flex g-3">
                 <div class="d-flex justify-content-center" style="max-width: 300px;">
-                    <img src="{{ $equipe->url ? $equipe->url : 'https://placehold.co/300' }}" class="img-fluid" alt="">
+                    <img src="{{ $equipe->src ? $equipe->src : 'https://placehold.co/300' }}" class="img-fluid" alt="">
                 </div>
                 <div>
                     <div class="card-body d-flex flex-column justify-content-between h-100">
