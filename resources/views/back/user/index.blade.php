@@ -3,7 +3,7 @@
 @section('title', 'Users')
 
 @section('content')
-<div class="page-team">
+<div class="page-user">
     <h1 class="table-title">Users</h1>
 
     <div class="table-header">

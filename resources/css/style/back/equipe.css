@@ -1,4 +1,6 @@
-.page-team {
+.page-team,
+.page-player,
+.page-user {
     padding: 2rem;
 }
 .table-title {

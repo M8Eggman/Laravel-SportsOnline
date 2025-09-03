@@ -3,7 +3,9 @@
 @section('title', 'Players')
 
 @section('content')
-    <div class="page-team">
+    <div class="page-player">
+        <h1 class="table-title">Players</h1>
+
         <div class="table-header">
             <h2>Players List</h2>
             <a href="{{ route('back.joueur.create') }}" class="btn-valo">+ Create a Player</a>
