@@ -31,7 +31,8 @@
         <div class="row g-4">
             @foreach ($europeTeams as $t)
                 <div class="col-md-3">
-                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? $t->src : null" :link="route('equipe.show', $t->id)" :element="$t" />
+                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? asset('storage/' . $t->src) : null"
+                        :link="route('equipe.show', $t->id)" :element="$t" />
                 </div>
             @endforeach
         </div>
@@ -52,7 +53,8 @@
         <div class="row g-4">
             @foreach ($notEuropeTeams as $t)
                 <div class="col-3">
-                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? $t->src : null" :link="route('equipe.show', $t->id)" :element="$t" />
+                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? asset('storage/' . $t->src) : null"
+                        :link="route('equipe.show', $t->id)" :element="$t" />
                 </div>
             @endforeach
         </div>
@@ -74,7 +76,7 @@
             @foreach ($freePlayers as $p)
                 <div class="col-3">
                     <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
-                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" :link="route('joueur.show', $p->id)" :element="$p"/>
+                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" :link="route('joueur.show', $p->id)" :element="$p" />
                 </div>
             @endforeach
         </div>
