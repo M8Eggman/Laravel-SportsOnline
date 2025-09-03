@@ -23,6 +23,9 @@
                             <p class="card-text text-muted mb-2">
                                 {{ ucfirst($joueur->position?->name) ?? 'No position specified' }}
                             </p>
+                            <p class="card-text text-muted mb-2">
+                                {{ ucfirst($joueur->genre?->name) ?? 'No genre specified' }}
+                            </p>
                             <p class="card-text small text-secondary">
                                 {{ $joueur->city ?? 'Unknown city' }}
                             </p>
