@@ -1,60 +1,143 @@
 @extends('layouts.back')
 
+@section('title', 'Players')
+
 @section('content')
-    <div class="container my-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>Liste des joueurs</h2>
-            <a href="{{ route('back.joueur.create') }}" class="btn btn-success">+ Créer un joueur</a>
+    <div class="page-team">
+        <div class="table-header">
+            <h2>Players List</h2>
+            <a href="{{ route('back.joueur.create') }}" class="btn-valo">+ Create a Player</a>
         </div>
+
         @if(session('success'))
-            <p class="alert alert-success">{{ session('success') }}</p>
+            <div class="alert-success-valo">
+                {{ session('success') }}
+            </div>
         @endif
-        <table class="table table-striped table-hover align-middle">
-            <thead class="table-dark">
+
+        <table class="table-not-bootstrap">
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Photo</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Équipe</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
                     <th>Position</th>
-                    <th>Âge</th>
+                    <th>Team</th>
+                    <th>Age</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @if (count($joueurs) == 0)
-                    <tr>
-                        <td colspan="7" class="text-center">Aucun joueur trouvé</td>
+                @if(count($mesJoueurs) > 0)
+                    <tr class="separator">
+                        <td colspan="8" class="text-center text-gray">My Players</td>
                     </tr>
                 @endif
-                @foreach ($joueurs as $joueur)
+
+                @forelse($mesJoueurs as $joueur)
                     <tr>
                         <td>{{ $joueur->id }}</td>
                         <td>
-                            <div class="d-flex justify-content-center">
-                                <img src="{{$joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}"
-                                    class="rounded-circle object-fit-cover" style="max-width: 50px; max-height: 50px;">
+                            <div class="table-img">
+                                <img
+                                    src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}">
                             </div>
                         </td>
                         <td>{{ $joueur->last_name }}</td>
                         <td>{{ $joueur->first_name }}</td>
-                        <td>{{ $joueur->equipe->name ?? 'Sans équipe' }}</td>
-                        <td>{{ ucfirst($joueur->position->name) ?? 'Sans positions' }}</td>
+                        <td>
+                            @if($joueur->position)
+                                <span class="badge info">{{ $joueur->position->name }}</span>
+                            @else
+                                <span class="text-gray">No Position</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($joueur->equipe)
+                                <a href="{{ route('back.equipe.show', $joueur->equipe->id) }}" class="badge secondary">
+                                    {{ $joueur->equipe->name }}
+                                </a>
+                            @else
+                                <span class="text-gray">No Team</span>
+                            @endif
+                        </td>
                         <td>{{ $joueur->age }}</td>
                         <td>
-                            <div class="d-flex gap-3">
-                                <a href="{{ route('back.joueur.show', $joueur->id) }}" class="btn btn-info btn-sm">Show</a>
-                                <a href="{{ route('back.joueur.edit', $joueur->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('back.joueur.delete', $joueur->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                            <div class="table-actions">
+                                <a href="{{ route('back.joueur.show', $joueur->id) }}" class="btn-valo small info">View</a>
+                                @canany(['isAdmin', 'update-joueur'], $joueur)
+                                    <a href="{{ route('back.joueur.edit', $joueur->id) }}" class="btn-valo small warning">Edit</a>
+                                    <form action="{{ route('back.joueur.delete', $joueur->id) }}" method="POST"
+                                        style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-valo small danger">Delete</button>
+                                    </form>
+                                @endcanany
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="8" class="table-empty">You have no players yet</td>
+                    </tr>
+                @endforelse
+
+                @if(count($mesJoueurs) > 0)
+                    <tr class="separator">
+                        <td colspan="8" class="text-center text-gray">Other Players</td>
+                    </tr>
+                @endif
+
+                @forelse($joueurs->whereNotIn('id', $mesJoueurs->pluck('id')) as $joueur)
+                    <tr>
+                        <td>{{ $joueur->id }}</td>
+                        <td>
+                            <div style="display:flex; justify-content:center;">
+                                <img src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}"
+                                    class="rounded-circle object-fit-cover" style="max-width:50px; max-height:50px;">
+                            </div>
+                        </td>
+                        <td>{{ $joueur->last_name }}</td>
+                        <td>{{ $joueur->first_name }}</td>
+                        <td>
+                            @if($joueur->position)
+                                <span class="badge info">{{ $joueur->position->name }}</span>
+                            @else
+                                <span class="text-gray">No Position</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($joueur->equipe)
+                                <a href="{{ route('back.equipe.show', $joueur->equipe->id) }}" class="badge secondary">
+                                    {{ $joueur->equipe->name }}
+                                </a>
+                            @else
+                                <span class="text-gray">No Team</span>
+                            @endif
+                        </td>
+                        <td>{{ $joueur->age }}</td>
+                        <td>
+                            <div class="table-actions">
+                                <a href="{{ route('back.joueur.show', $joueur->id) }}" class="btn-valo small info">View</a>
+                                @canany(['isAdmin', 'update-joueur'], $joueur)
+                                    <a href="{{ route('back.joueur.edit', $joueur->id) }}" class="btn-valo small warning">Edit</a>
+                                    <form action="{{ route('back.joueur.delete', $joueur->id) }}" method="POST"
+                                        style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-valo small danger">Delete</button>
+                                    </form>
+                                @endcanany
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8" class="table-empty">No other players found</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

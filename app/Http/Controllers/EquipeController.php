@@ -9,6 +9,7 @@ use App\Models\Genre;
 use App\Models\Continent;
 use App\Models\Joueur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -33,10 +34,8 @@ class EquipeController extends Controller
     public function index_back()
     {
         $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
-        $genres = Genre::all();
-        $continents = Continent::all();
-        $joueurs = Joueur::all();
-        return view('back.equipe.index', compact('equipes'));
+        $mesEquipes = Equipe::where('user_id', Auth::id())->get();
+        return view('back.equipe.index', compact('equipes', "mesEquipes"));
     }
 
     /**

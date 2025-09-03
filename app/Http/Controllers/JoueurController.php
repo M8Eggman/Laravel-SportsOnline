@@ -34,7 +34,8 @@ class JoueurController extends Controller
     public function index_back()
     {
         $joueurs = Joueur::all();
-        return view('back.joueur.index', compact('joueurs'));
+        $mesJoueurs = Joueur::where('user_id', Auth::id())->get();
+        return view('back.joueur.index', compact('joueurs', 'mesJoueurs'));
     }
     public function show($id)
     {

@@ -1,5 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "/resources/css/style/buttons.css";
+@import "/resources/css/style/back/equipe.css";
 
 .bg-main-dark {
     background-color: #2c2c2c;
@@ -7,13 +8,12 @@
     min-height: 100dvh;
 }
 body {
-    font-family: 'Quicksand', sans-serif;
-    
+    font-family: "Quicksand", sans-serif;
 }
-h1{
-    font-family: 'Electrolize', 'sans-serif';
-}  
-a{
+h1 {
+    font-family: "Electrolize", "sans-serif";
+}
+a {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.55);
 }
