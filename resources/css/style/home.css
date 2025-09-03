@@ -44,3 +44,20 @@
     
     opacity: 1; /* Zone révélée à 100% */
 }
+
+/* .section_a{
+    background-color: black;
+} */
+
+.section_b{
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    margin-bottom: 15px;
+}
+.section_b h2{
+    color: white;
+    padding-top: 15px;
+}
+h2{
+    color: white;
+}
