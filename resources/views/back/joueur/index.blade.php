@@ -20,7 +20,9 @@
         <table class="table-not-bootstrap">
             <thead>
                 <tr>
-                    <th>#</th>
+                    @can('isAdmin')
+                        <td>ID</td>
+                    @endcan
                     <th>Photo</th>
                     <th style="width:15%;">Last Name</th>
                     <th style="width:15%;">First Name</th>
@@ -39,7 +41,9 @@
 
                 @forelse($mesJoueurs as $joueur)
                     <tr>
-                        <td>{{ $joueur->id }}</td>
+                        @can('isAdmin')
+                            <td>{{ $joueur->id }}</td>
+                        @endcan
                         <td>
                             <div class="table-img">
                                 <img
@@ -92,9 +96,13 @@
                     </tr>
                 @endif
 
+
                 @forelse($joueurs->whereNotIn('id', $mesJoueurs->pluck('id')) as $joueur)
+
                     <tr>
-                        <td>{{ $joueur->id }}</td>
+                        @can('isAdmin')
+                            <td>{{ $joueur->id }}</td>
+                        @endcan
                         <td>
                             <div class="table-img">
                                 <img

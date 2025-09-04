@@ -12,6 +12,16 @@
     border-left: 5px solid var(--valo-primary);
     padding-left: 10px;
 }
+.table-title-name {
+    color: var(--valo-white);
+    font-weight: 900;
+    font-size: 2.2rem;
+    margin-left: 10px;
+    text-transform: none;
+    background: var(--valo-primary);
+    padding: 0.2rem 0.6rem;
+    clip-path: polygon(0 0, 95% 0, 100% 40%, 100% 100%, 5% 100%, 0 60%);
+}
 
 .table-header {
     display: flex;
@@ -85,7 +95,7 @@
 }
 
 .table-empty {
-    text-align: center;
+    text-align: center !important;
     padding: 2rem;
     color: var(--valo-text-gray);
     font-style: italic;

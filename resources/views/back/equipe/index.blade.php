@@ -20,7 +20,9 @@
         <table class="table-not-bootstrap">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    @can('isAdmin')
+                        <td>ID</td>
+                    @endcan
                     <th>Photo</th>
                     <th style="width: 15%">Team Name</th>
                     <th style="width: 10%;">City</th>
@@ -38,12 +40,15 @@
                 @endif
 
                 @forelse($mesEquipes as $equipe)
+
                     <tr>
-                        <td>{{ $equipe->id }}</td>
+                        @can('isAdmin')
+                            <td>{{ $equipe->id }}</td>
+                        @endcan
                         <td>
                             <div class="table-img">
                                 <img src="{{ $equipe?->src ? asset('storage/' . $equipe->src) : 'https://placehold.co/50x50' }}"
-                                    alt="Team Photo">
+                                    alt="">
                             </div>
                         </td>
                         <td class="break"><strong>{{ $equipe->name }}</strong></td>
@@ -106,11 +111,13 @@
 
                 @forelse($equipes->whereNotIn('id', $mesEquipes->pluck('id')) as $equipe)
                     <tr>
-                        <td>{{ $equipe->id }}</td>
+                        @can('isAdmin')
+                            <td>{{ $equipe->id }}</td>
+                        @endcan
                         <td>
                             <div class="table-img">
                                 <img src="{{ $equipe?->src ? asset('storage/' . $equipe->src) : 'https://placehold.co/50x50' }}"
-                                    alt="Team Photo">
+                                    alt="">
                             </div>
                         </td>
                         <td class="break"><strong>{{ $equipe->name }}</strong></td>
