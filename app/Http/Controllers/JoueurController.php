@@ -166,7 +166,7 @@ class JoueurController extends Controller
             'last_name' => ['required', 'string', 'max:50'],
             'age' => ['required', 'integer', 'min:16', 'max:60'],
             'phone' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'email', 'max:255', 'unique:joueurs,email'],
+            'email' => ['required', 'email', 'max:255', 'unique:joueurs,email,' . $id],
             'city' => ['required', 'string', 'max:100'],
             'position_id' => ['required', 'integer', 'exists:positions,id'],
             'equipe_id' => ['nullable', 'integer', 'exists:equipes,id'],

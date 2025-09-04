@@ -12,7 +12,6 @@
             @csrf
             @method('PUT')
 
-            {{-- Personal Info --}}
             <div class="form-row">
                 <div class="form-group mb-3">
                     <label for="first_name">First Name <span class="text-danger">*</span></label>
@@ -70,7 +69,6 @@
                 </div>
             </div>
 
-            {{-- Team & Role --}}
             <div class="form-row">
                 <div class="form-group mb-3">
                     <label for="position_id">Position <span class="text-danger">*</span></label>
@@ -117,7 +115,6 @@
                 </div>
             </div>
 
-            {{-- Image --}}
             <div class="form-group mb-3">
                 <label for="src">Image</label>
                 <input type="file" name="src" id="src" class="form-control-valo">
@@ -126,7 +123,9 @@
                 @enderror
             </div>
 
-            {{-- Actions --}}
+            <p class="required-note">All fields marked with <span class="text-danger">*</span> are required.</p>
+
+
             <div class="form-actions mt-4 d-flex gap-3">
                 <button type="submit" class="btn-valo success">Update</button>
                 <a href="{{ route('back.joueur.index') }}" class="btn-valo info">Cancel</a>

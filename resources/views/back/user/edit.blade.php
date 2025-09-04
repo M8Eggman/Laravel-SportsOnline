@@ -52,6 +52,8 @@
                 @enderror
             </div>
 
+            <p class="required-note">All fields marked with <span class="text-danger">*</span> are required.</p>
+
             <div class="d-flex gap-3 mt-3">
                 <button type="submit" class="btn-valo warning">Update</button>
                 <a href="{{ route('back.user.index') }}" class="btn-valo info">Cancel</a>

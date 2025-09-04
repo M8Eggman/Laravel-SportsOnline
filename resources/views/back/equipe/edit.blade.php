@@ -6,7 +6,8 @@
     <div class="page-team-edit">
         <h1 class="table-title">Edit Team: <span class="table-title-name">{{ $equipe->name }}</span></h1>
 
-        <form action="{{ route('back.equipe.update', $equipe->id) }}" method="POST" enctype="multipart/form-data" class="form-valo">
+        <form action="{{ route('back.equipe.update', $equipe->id) }}" method="POST" enctype="multipart/form-data"
+            class="form-valo">
             @csrf
             @method('PUT')
 
@@ -27,7 +28,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="src">Image</label>
+                <label for="src">Image <span class="text-danger">*</span></label>
                 <input type="file" name="src" id="src" class="form-control-valo">
                 @error('src')
                     <div class="text-danger small fst-italic mt-1">{{ $message }}</div>
@@ -35,7 +36,7 @@
             </div>
 
             <div class="form-group mb-3">
-                <label for="continent_id">Continent</label>
+                <label for="continent_id">Continent <span class="text-danger">*</span></label>
                 <select name="continent_id" id="continent_id" class="form-select-valo">
                     <option value="">None</option>
                     @foreach($continents as $continent)
@@ -49,20 +50,7 @@
                 @enderror
             </div>
 
-            <div class="form-group mb-3">
-                <label for="genre_id">Gender</label>
-                <select name="genre_id" id="genre_id" class="form-select-valo">
-                    <option value="">Mixed</option>
-                    @foreach($genres as $genre)
-                        <option value="{{ $genre->id }}" {{ $equipe->genre_id == $genre->id ? 'selected' : '' }}>
-                            {{ ucfirst($genre->name) }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('genre_id')
-                    <div class="text-danger small fst-italic mt-1">{{ $message }}</div>
-                @enderror
-            </div>
+            <p class="required-note">All fields marked with <span class="text-danger">*</span> are required.</p>
 
             <div class="d-flex gap-3 mt-3">
                 <button type="submit" class="btn-valo warning">Update</button>

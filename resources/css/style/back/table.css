@@ -242,3 +242,17 @@
 .form-row .form-group {
     flex: 1;
 }
+
+.required-note {
+    font-style: italic;
+    color: var(--valo-text-gray);
+    margin-top: 1rem;
+    margin-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-left: 4px solid var(--valo-primary);
+    border-radius: 4px;
+}
+.required-note span.text-danger {
+    font-weight: 700;
+}

@@ -114,6 +114,8 @@
                 @enderror
             </div>
 
+            <p class="required-note">All fields marked with <span class="text-danger">*</span> are required.</p>
+
             <div class="form-actions mt-4">
                 <button type="submit" class="btn-valo success">Create</button>
                 <a href="{{ route('back.joueur.index') }}" class="btn-valo info">Cancel</a>

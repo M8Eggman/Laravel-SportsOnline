@@ -37,6 +37,7 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
+        
         $user->last_name = $request->last_name;
         $user->first_name = $request->first_name;
         $user->email = $request->email;

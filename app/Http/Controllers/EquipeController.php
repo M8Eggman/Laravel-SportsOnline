@@ -127,9 +127,8 @@ class EquipeController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:25'],
             'city' => ['required', 'string', 'max:50'],
-            'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
-            'continent_id' => ['required', 'exists:continents,id'],
         ]);
 
         $equipe = Equipe::findOrFail($id);
@@ -140,7 +139,6 @@ class EquipeController extends Controller
 
         $equipe->name = $request->name;
         $equipe->city = $request->city;
-        $equipe->genre_id = $request->genre_id;
         $equipe->user_id = $request->user()->id;
         $equipe->continent_id = $request->continent_id;
 
