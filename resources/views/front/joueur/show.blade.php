@@ -13,9 +13,9 @@
                     <h2 class="card-title player_name">{{ $joueur->first_name }} {{ $joueur->last_name }}</h2>
 
                 </div>
-                <div class="flex-grow-1" style="max-width: 300px">
-                    <div class="card-body d-flex flex-column justify-content-between h-100">
-                        <div>
+                <div class="div_back flex-grow-1">
+                    <div class="card-body d-flex flex-column h-100">
+                        <div class="div_back_info">
                             <p><strong>Age:</strong> {{ $joueur->age ?? 'N/A' }}</p>
                             <p><strong>Position:</strong> {{ ucfirst($joueur->position?->name) ?? 'Not specified' }}</p>
                             <p><strong>City:</strong> {{ $joueur->city ?? 'Unknown' }}</p>
@@ -35,9 +35,9 @@
                                 @endif
                             </p>
                             <p><strong>Gender:</strong>
-                                @if ($joueur->genre?->name == 'masculin')
+                                @if ($joueur->genre?->name == 'male')
                                     Male
-                                @elseif ($joueur->genre?->name == 'feminin')
+                                @elseif ($joueur->genre?->name == 'female')
                                     Female
                                 @else
                                     Not specified
@@ -45,7 +45,7 @@
                             </p>
                         </div>
 
-                        <div class="mt-3">
+                        <div class="div_edit mt-3">
                             <a onclick="history.back();" class="btn btn-secondary">Back</a>
                             @canany(['isAdmin', 'update-joueur'], $joueur)
                                 <a href="{{ route('back.joueur.edit', $joueur->id) }}" class="btn btn-warning">Edit Player</a>

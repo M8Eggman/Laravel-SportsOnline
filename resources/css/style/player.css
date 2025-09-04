@@ -11,6 +11,7 @@
     border-radius: 50%;
     width: 300px;
     height: 300px;
+    top: 0;
 }
 
 .player_img>img{
@@ -38,4 +39,25 @@
 }
 .div_player_ni{
     align-items: center;
+}
+.div_back_info{
+    background: linear-gradient(90deg, #00000000, #000, #00000000);
+    grid-row: 1;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    top: 30px;
+    position: relative;
+    align-items: center;
+}
+.div_edit{
+    top: -22rem;
+    left: 22rem;
+    position: relative;
+}
+.div_back>.card-body{
+    width: 400px;
+}
+.div_back{
+    max-width: 400px;
 }
