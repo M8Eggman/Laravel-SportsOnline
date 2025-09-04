@@ -197,20 +197,27 @@ class JoueurController extends Controller
         if ($equipe) {
             // vérifie le genre
             if ($equipe->genre_id && ($request->genre_id === null || $request->genre_id != $equipe->genre_id)) {
-                return redirect()->back()->withInput()
+                return redirect()
+                    ->back()
+                    ->withInput()
                     ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
             }
 
             // vérifie le nombre total de joueurs
-            if ($equipe->joueurs()->count() >= 7) {
-                return redirect()->back()->withInput()
+            if ($equipe->joueur->count() >= 7) {
+                return redirect()
+                    ->back()
+                    ->withInput()
                     ->withErrors(['equipe_id' => 'This team already has 7 players.']);
             }
 
             // vérifie le nombre de joueurs pour la position
-            $positionCount = $equipe->joueurs()->where('position_id', $request->position_id)->count();
+            $positionCount = $equipe->joueur->where('position_id', $request->position_id)->count();
+
             if ($positionCount >= 2) {
-                return redirect()->back()->withInput()
+                return redirect()
+                    ->back()
+                    ->withInput()
                     ->withErrors(['position_id' => 'This position already has 2 players in the team.']);
             }
         }
