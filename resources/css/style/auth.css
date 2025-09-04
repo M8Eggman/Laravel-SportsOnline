@@ -1,0 +1,140 @@
+.page-register,
+.page-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    padding: 1rem;
+}
+
+.register-card,
+.login-card {
+    background: rgba(var(--valo-secondary-rgb), 0.85);
+    border: 2px solid var(--valo-primary);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.register-header,
+.login-header {
+    background: var(--valo-primary);
+    padding: 1rem;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.register-header h4,
+.login-header h4 {
+    color: var(--valo-white);
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.register-body,
+.login-body {
+    padding: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    color: var(--valo-white);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--valo-border);
+    border-radius: 4px;
+    background: var(--valo-tertiary);
+    color: var(--valo-white);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--valo-primary);
+    box-shadow: 0 0 0 2px rgba(255, 68, 84, 0.2);
+}
+
+.error-message {
+    color: var(--valo-warning);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--valo-primary);
+}
+
+.checkbox-group label {
+    color: var(--valo-white);
+    font-weight: 500;
+    margin: 0;
+}
+
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.link-text {
+    color: var(--valo-info);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}
+
+.btn-submit {
+    background: var(--valo-success);
+    color: var(--valo-black);
+    padding: 0.6rem 1.2rem;
+    border: none;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-submit:hover {
+    filter: brightness(0.85);
+    transform: translateY(-2px);
+}
+
+/* Alert de succès */
+.alert-success-valo {
+    background-color: var(--valo-success);
+    color: var(--valo-black);
+    padding: 0.8rem 1.2rem;
+    border-left: 5px solid var(--valo-primary);
+    border-radius: 6px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
