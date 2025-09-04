@@ -19,15 +19,23 @@ class JoueurController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($genre)
     {
-        $joueurs = Joueur::all();
+        $joueurs = match ($genre) {
+            'See All' => Joueur::all(),
+            default => Joueur::whereHas('genre', function ($q) use ($genre) {
+                    $q->where('name', $genre);
+                })->orWhereNull('genre_id')->get(),
+        };
+
         return view('front.joueur.index', compact('joueurs'));
     }
+
     public function index_back()
     {
         $joueurs = Joueur::all();
-        return view('back.joueur.index', compact('joueurs'));
+        $mesJoueurs = Joueur::where('user_id', Auth::id())->get();
+        return view('back.joueur.index', compact('joueurs', 'mesJoueurs'));
     }
     public function show($id)
     {
@@ -58,17 +66,32 @@ class JoueurController extends Controller
     public function store(StoreJoueurRequest $request)
     {
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:50'],
+            'last_name' => ['required', 'string', 'max:50'],
             'age' => ['required', 'integer', 'min:16', 'max:60'],
             'phone' => ['nullable', 'string', 'max:20'],
             'email' => ['nullable', 'email', 'max:255', 'unique:joueurs,email'],
-            'city' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:100'],
             'position_id' => ['required', 'integer', 'exists:positions,id'],
             'equipe_id' => ['nullable', 'integer', 'exists:equipes,id'],
             'genre_id' => ['nullable', 'integer', 'exists:genres,id'],
             'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
         ]);
+
+        // récupère l'équipe si le joueur crée en a une
+        $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
+
+        // vérifie si equipe existe et si l'équipe a un genre défini
+        if ($equipe && $equipe->genre_id) {
+            // si le joueur n'a pas de genre ou qu'il ne correspond pas au genre de l'equipe
+            if ($request->genre_id === null || $request->genre_id != $equipe->genre_id) {
+                // on retourne avec une erreur est l'inpute form pre rempli
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
+            }
+        }
 
         $joueur = new Joueur();
         $joueur->first_name = $request->first_name;
@@ -143,6 +166,21 @@ class JoueurController extends Controller
 
         if (!Gate::allows('update-joueur', $joueur)) {
             return redirect('/');
+        }
+
+        // récupère l'équipe si le joueur crée en a une
+        $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
+
+        // vérifie si equipe existe et si l'équipe a un genre défini
+        if ($equipe && $equipe->genre_id) {
+            // si le joueur n'a pas de genre ou qu'il ne correspond pas au genre de l'equipe
+            if ($request->genre_id === null || $request->genre_id != $equipe->genre_id) {
+                // on retourne avec une erreur est l'inpute form pre rempli
+                return redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
+            }
         }
 
         $joueur->first_name = $request->first_name;

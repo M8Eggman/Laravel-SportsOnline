@@ -9,6 +9,7 @@ use App\Models\Genre;
 use App\Models\Continent;
 use App\Models\Joueur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Str;
@@ -18,29 +19,14 @@ class EquipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($continent)
     {
-        $equipes = Equipe::all();
-
-        return view('front.equipe.index', compact('equipes'));
-    }
-    public function index_masculin()
-    {
-        $equipes = Equipe::whereHas('genre', fn($q) => $q->where('name', 'Masculin'))->get();
-
-        return view('front.equipe.index', compact('equipes'));
-    }
-
-    public function index_feminin()
-    {
-        $equipes = Equipe::whereHas('genre', fn($q) => $q->where('name', 'Feminin'))->get();
-
-        return view('front.equipe.index', compact('equipes'));
-    }
-
-    public function index_mixte()
-    {
-        $equipes = Equipe::whereNull('genre_id')->get();
+        $equipes = match ($continent) {
+            'See All' => Equipe::all(),
+            default => Equipe::whereHas('continent', function ($q) use ($continent) {
+                    $q->where('name', $continent);
+                })->orWhereNull('continent_id')->get(),
+        };
 
         return view('front.equipe.index', compact('equipes'));
     }
@@ -48,10 +34,8 @@ class EquipeController extends Controller
     public function index_back()
     {
         $equipes = Equipe::with(['genre', 'continent', 'joueur'])->get();
-        $genres = Genre::all();
-        $continents = Continent::all();
-        $joueurs = Joueur::all();
-        return view('back.equipe.index', compact('equipes'));
+        $mesEquipes = Equipe::where('user_id', Auth::id())->get();
+        return view('back.equipe.index', compact('equipes', "mesEquipes"));
     }
 
     /**
@@ -85,11 +69,11 @@ class EquipeController extends Controller
     public function store(StoreEquipeRequest $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'name' => ['required', 'string', 'max:25'],
+            'city' => ['required', 'string', 'max:100'],
+            'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
-            'continent_id' => ['nullable', 'exists:continents,id'],
+            'continent_id' => ['required', 'exists:continents,id'],
         ]);
 
         $equipe = new Equipe();
@@ -141,11 +125,11 @@ class EquipeController extends Controller
     public function update(UpdateEquipeRequest $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'name' => ['required', 'string', 'max:25'],
+            'city' => ['required', 'string', 'max:50'],
+            'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
-            'continent_id' => ['nullable', 'exists:continents,id'],
+            'continent_id' => ['required', 'exists:continents,id'],
         ]);
 
         $equipe = Equipe::findOrFail($id);

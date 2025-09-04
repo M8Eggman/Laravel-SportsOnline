@@ -14,8 +14,8 @@ class GenreSeeder extends Seeder
     public function run(): void
     {
         $genres = [
-            ['name' => 'masculin'],
-            ['name' => 'feminin'],
+            ['name' => 'male'],
+            ['name' => 'female'],
         ];
 
         foreach ($genres as $g) {

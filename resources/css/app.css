@@ -1,5 +1,30 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "/resources/css/style/buttons.css";
+@import "/resources/css/style/back/table.css";
+
+:root {
+    --valo-primary: #ff4655;
+    --valo-primary-dark: #d73848;
+    --valo-secondary: #1c232e;
+    --valo-border: #2c3e50;
+    --valo-text-gray: #7a818c;
+    --valo-info: #00b8ff;
+    --valo-warning: #ffc107;
+    --valo-success: #2ecc71;
+    --valo-white: #fff;
+    --valo-black: #000;
+}
+
+body {
+    font-family: "Quicksand", sans-serif;
+}
+h1 {
+    font-family: "Electrolize", "sans-serif";
+}
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.55);
+}
 @import "/resources/css/style/card.css";
 @import "/resources/css/style/home.css";
 @import "/resources/css/style/team.css";
@@ -11,6 +36,7 @@
     color: #f8f9fa;
     min-height: 100dvh;
 }
+
 body {
     font-family: 'Quicksand', sans-serif;
     margin-top: 60px;    

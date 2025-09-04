@@ -16,10 +16,6 @@
         <h5>Links</h5>
         <ul class="list-unstyled mb-0">
           <li class="mb-2"><a href="/" class="text-light">Home</a></li>
-          <li class="mb-2"><a href="{{ route('joueur.index') }}" class="text-light">Players</a></li>
-          <li class="mb-2"><a href="{{ route('equipe.masculin.index') }}" class="text-light">Men's Team</a></li>
-          <li class="mb-2"><a href="{{ route('equipe.feminin.index') }}" class="text-light">Women's Team</a></li>
-          <li class="mb-2"><a href="{{ route('equipe.mixte.index') }}" class="text-light">Mixed Team</a></li>
         </ul>
       </div>
 
