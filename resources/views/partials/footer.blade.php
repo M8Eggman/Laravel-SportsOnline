@@ -16,8 +16,8 @@
         <h5>Links</h5>
         <ul class="list-unstyled mb-0">
           <li class="mb-2"><a href="/" class="text-light">Home</a></li>
-          <li class="mb-2"><a href="{{ route('equipe.index', 'See All') }}" class="text-light">Teams</a></li>
-          <li class="mb-2"><a href="{{ route('joueur.index', 'See All') }}" class="text-light">Players</a></li>
+          <li class="mb-2"><a href="{{ route('equipe.index') }}" class="text-light">Teams</a></li>
+          <li class="mb-2"><a href="{{ route('joueur.index') }}" class="text-light">Players</a></li>
         </ul>
       </div>
 

@@ -37,11 +37,14 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
-        
+
         $user->last_name = $request->last_name;
         $user->first_name = $request->first_name;
         $user->email = $request->email;
-        $user->role_id = $request->role_id;
+        // si l'user est lui meme ne peux pas modifié son role
+        if ($request->user()->id !== $user->id) {
+            $user->role_id = $request->role_id;
+        }
 
         $user->save();
 
@@ -51,6 +54,24 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        $currentUser = auth()->user();
+
+
+        // empêche qu'un admin se supprime lui-même
+        if ($user->id === $currentUser->id) {
+            return redirect()->route('back.user.index')
+                ->with('error', 'Vous ne pouvez pas supprimer votre propre compte !');
+        }
+
+        // empêche de supprimer le dernier admin
+        if ($user->role->name === 'admin') {
+            $adminCount = User::whereHas('role', fn($q) => $q->where('name', 'admin'))->count();
+            if ($adminCount <= 1) {
+                return redirect()->route('back.user.index')
+                    ->with('error', 'Impossible de supprimer le dernier admin !');
+            }
+        }
+        
         $user->delete();
 
         return redirect()->route('back.user.index')->with('success', 'Utilisateur supprimé !');
