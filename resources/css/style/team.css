@@ -170,7 +170,7 @@
     justify-content: space-between;
     width: 70%;
     position: absolute;
-    top: 20%;
+    top: 25%;
 
 }
 .team_conti{
@@ -190,6 +190,11 @@
     position: relative; 
     overflow: hidden;
     border-radius: 50%;
+    width: 225px;
+    height: 225px;
+}
+.div_team_img>img{
+    height: 100%;
 }
 .div_team_players{
     display: flex;
