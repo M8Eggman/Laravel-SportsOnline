@@ -151,7 +151,7 @@ class EquipeController extends Controller
             $original_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $file_name = date('Y_m_d_His') . '_' . uniqid() . '_' . Str::slug($original_name) . '.' . $file->getClientOriginalExtension();
 
-            // stock l'image dans public/photo_joueur
+            // stock l'image dans public/photo_equipe
             $file_path = $file->storeAs('photo_equipe', $file_name, 'public');
 
             // supprimer l’ancienne image si elle existe
@@ -167,7 +167,7 @@ class EquipeController extends Controller
 
         $equipe->save();
 
-        return redirect()->route('back.equipe.index')->with('success', 'Équipe mise à jour avec succès');
+        return redirect()->route('back.equipe.show', $equipe->id)->with('success', 'Équipe mise à jour avec succès');
     }
 
     /**

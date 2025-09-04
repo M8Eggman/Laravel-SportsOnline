@@ -186,3 +186,59 @@
     margin-bottom: 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+.page-player-create,
+.page-player-edit,
+.page-user-edit,
+.page-team-create,
+.page-team-edit {
+    padding: 2rem;
+}
+.form-valo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--valo-secondary);
+    padding: 2rem;
+    border: 2px solid var(--valo-primary);
+    border-radius: 6px;
+    max-width: 70rem;
+    margin-top: 2rem;
+    margin-inline: auto;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    color: var(--valo-white);
+}
+.form-actions {
+    display: flex;
+    gap: 1rem;
+}
+.form-control-valo {
+    background-color: var(--valo-tertiary);
+    border: 1px solid var(--valo-text-gray);
+    color: var(--valo-white);
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+.form-select-valo {
+    background-color: var(--valo-tertiary);
+    border: 1px solid var(--valo-text-gray);
+    color: var(--valo-white);
+    border-radius: 0.3rem;
+    padding: 0.6rem;
+}
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}

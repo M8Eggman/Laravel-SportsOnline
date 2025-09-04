@@ -69,9 +69,9 @@ class JoueurController extends Controller
             'first_name' => ['required', 'string', 'max:50'],
             'last_name' => ['required', 'string', 'max:50'],
             'age' => ['required', 'integer', 'min:16', 'max:60'],
-            'phone' => ['nullable', 'string', 'max:20'],
-            'email' => ['nullable', 'email', 'max:255', 'unique:joueurs,email'],
-            'city' => ['nullable', 'string', 'max:100'],
+            'phone' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'email', 'max:255', 'unique:joueurs,email'],
+            'city' => ['required', 'string', 'max:100'],
             'position_id' => ['required', 'integer', 'exists:positions,id'],
             'equipe_id' => ['nullable', 'integer', 'exists:equipes,id'],
             'genre_id' => ['nullable', 'integer', 'exists:genres,id'],
@@ -141,9 +141,17 @@ class JoueurController extends Controller
         }
 
         $positions = Position::all();
+
+        // récupère les équipes avec moins de 7 joueurs
         $equipes = Equipe::withCount('joueur')
             ->having('joueur_count', '<', 7)
             ->get();
+
+        // si le joueur a déjà une équipe, on l'ajoute à la liste pour qu'elle apparaisse dans le select
+        if ($joueur->equipe) {
+            $equipes->push($joueur->equipe);
+        }
+
         $genres = Genre::all();
         return view('back.joueur.edit', compact('joueur', 'positions', 'equipes', 'genres'));
     }
@@ -154,11 +162,15 @@ class JoueurController extends Controller
     public function update(UpdateJoueurRequest $request, $id)
     {
         $request->validate([
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:50'],
+            'last_name' => ['required', 'string', 'max:50'],
             'age' => ['required', 'integer', 'min:16', 'max:60'],
+            'phone' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'email', 'max:255', 'unique:joueurs,email'],
+            'city' => ['required', 'string', 'max:100'],
             'position_id' => ['required', 'integer', 'exists:positions,id'],
             'equipe_id' => ['nullable', 'integer', 'exists:equipes,id'],
+            'genre_id' => ['nullable', 'integer', 'exists:genres,id'],
             'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
         ]);
 
@@ -222,7 +234,7 @@ class JoueurController extends Controller
         $photo->save();
 
 
-        return redirect()->route('back.joueur.index')->with('success', 'Joueur mis à jour !');
+        return redirect()->route('back.joueur.show', $joueur->id)->with('success', 'Joueur mis à jour !');
     }
 
     /**

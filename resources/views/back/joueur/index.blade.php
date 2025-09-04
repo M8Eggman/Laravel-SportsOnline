@@ -8,7 +8,7 @@
 
         <div class="table-header">
             <h2>Players List</h2>
-            <a href="{{ route('back.joueur.create') }}" class="btn-valo">+ Create a Player</a>
+            <a href="{{ route('back.joueur.create') }}" class="btn-valo">Create a Player</a>
         </div>
 
         @if(session('success'))
@@ -50,8 +50,8 @@
                                     src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}">
                             </div>
                         </td>
-                        <td>{{ $joueur->last_name }}</td>
-                        <td>{{ $joueur->first_name }}</td>
+                        <td class="break">{{ $joueur->last_name }}</td>
+                        <td class="break">{{ $joueur->first_name }}</td>
                         <td>
                             @if($joueur->position)
                                 <span class="badge info">{{ $joueur->position->name }}</span>
@@ -109,8 +109,8 @@
                                     src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}">
                             </div>
                         </td>
-                        <td>{{ $joueur->last_name }}</td>
-                        <td>{{ $joueur->first_name }}</td>
+                        <td class="break">{{ $joueur->last_name }}</td>
+                        <td class="break">{{ $joueur->first_name }}</td>
                         <td>
                             @if($joueur->position)
                                 <span class="badge info">{{ $joueur->position->name }}</span>

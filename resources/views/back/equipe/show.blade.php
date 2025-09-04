@@ -15,6 +15,12 @@
             @endcan
         </div>
 
+        @if(session('success'))
+            <div class="alert-success-valo">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="team-show-container" style="display:flex; gap:2rem;">
             <div class="table-img" style="width: 400px; height: 400px; border-radius: 0;">
                 <img src="{{ $equipe?->src ? asset('storage/' . $equipe->src) : 'https://placehold.co/400x400' }}" alt="">

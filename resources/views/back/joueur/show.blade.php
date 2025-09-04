@@ -5,10 +5,8 @@
 @section('content')
     <div class="page-player">
 
-        <h1 class="table-title">
-            Profil du joueur
-            <span class="table-title-name">{{ $joueur->last_name }} {{ $joueur->first_name }}</span>
-        </h1>
+        <h1 class="table-title">Profil du joueur <span class="table-title-name">{{ $joueur->last_name }}
+                {{ $joueur->first_name }}</span></h1>
 
         <div class="table-header">
             <a href="{{ route('back.joueur.index') }}" class="btn-valo small">Retour</a>
@@ -18,8 +16,14 @@
             @endcan
         </div>
 
+        @if(session('success'))
+            <div class="alert-success-valo">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="player-show-container" style="display:flex; gap:2rem;">
-            <div class="table-img" style="width: 400px; height: 400px; border-radius: 0;">
+            <div class="table-img" style="width: 400px; height: 400px; border-radius: 5px;">
                 <img src="{{ $joueur?->photo->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/400x400' }}"
                     alt="">
             </div>
