@@ -10,19 +10,17 @@
     <div class="d-flex justify-content-center align-items-center card_div_img" style="height: 300px;">
         <img src="{{ $image ?? 'https://placehold.co/400' }}" class="card_img" alt="">
     </div>
-    @if ($element)
-        {{-- Vérifie si c'est une équipe --}}
-        @if($element instanceof \App\Models\Equipe)
-            @can('update-equipe', $element)
-                <a href="{{ route('back.equipe.edit', $element->id) }}" class="btn_modify">Modify Team</a>
-            @endcan
-        {{-- Vérifie si c'est un joueur --}}
-        @elseif($element instanceof \App\Models\Joueur)
-            @can('update-joueur', $element)
-                <a href="{{ route('back.joueur.edit', $element->id) }}" class="btn_modify">Modify Player</a>
-            @endcan
+        @if ($element)
+            @if($element instanceof \App\Models\Equipe)
+                @can('update-equipe', $element)
+                    <a href="{{ route('back.equipe.edit', $element->id) }}" class="btn_modify">Modify Team</a>
+                @endcan
+            @elseif($element instanceof \App\Models\Joueur)
+                @can('update-joueur', $element)
+                    <a href="{{ route('back.joueur.edit', $element->id) }}" class="btn_modify">Modify Player</a>
+                @endcan
+            @endif
         @endif
-    @endif
     <div class="card-body mt-auto">
         <h5 class="card-title mb-1">{{ $title }}</h5>
         <p class="card-text mb-2">{{ $subtitle }}</p>

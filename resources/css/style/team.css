@@ -2,6 +2,7 @@
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 25px;
+    margin-bottom: 3rem;
 }
 /* .team h2{
     text-align: center;
@@ -122,6 +123,12 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+.team_img_one>a{
+    transition: all ease-in-out 300ms;
+}
+.team_img_one>a:hover{
+    scale: 1.1;
+}
 .spane{
     font-size: 20pt;
     color: #ffffff;
@@ -211,7 +218,7 @@
 .div_count{
     display: flex;
     position: relative;
-    left: 80%;
+    left: 65%;
 }
 
 .equipe_glo{
