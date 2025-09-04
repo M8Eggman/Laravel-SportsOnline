@@ -6,9 +6,8 @@
     <div class="container p-5">
         <div class="card border-0">
             <div class="d-flex g-3">
-                <div class="d-flex justify-content-center" style="max-width: 300px;">
-                    <img src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/300' }}"
-                        class="img-fluid" alt="">
+                <div class="d-flex justify-content-center player_img">
+                    <img src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/300' }}" alt="">
                 </div>
                 <div class="flex-grow-1">
                     <div class="card-body d-flex flex-column justify-content-between h-100">
