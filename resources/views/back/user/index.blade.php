@@ -2,6 +2,8 @@
 
 @section('title', 'Users')
 
+
+
 @section('content')
     <div class="page-user">
         <h1 class="table-title">Users</h1>
@@ -58,7 +60,11 @@
                                 <form method="POST" action="{{ route('back.user.delete', $user->id) }}" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-valo small danger">Delete</button>
+                                    <button type="submit"
+                                        class="btn-valo small danger {{ auth()->id() === $user->id ? 'disabled' : '' }}"
+                                        @if(auth()->id() === $user->id) aria-disabled="true" tabindex="-1" @endif>
+                                        Delete
+                                    </button>
                                 </form>
                             </div>
                         </td>

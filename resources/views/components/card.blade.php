@@ -26,16 +26,11 @@
         <p class="card-text mb-2">{{ $subtitle }}</p>
         <div class="d-flex justify-content-center">
             @if($link)
-                <div
-                aria-label="User Login Button"
-                tabindex="0"
-                role="button"
-                class="user-profile"
-                >
+                <a class="user-profile" href="{{ $link }}" >
                     <div class="user-profile-inner">
-                        <a href="{{ $link }}">See More</a>
+                        <span>See More</span>
                     </div>
-                </div>
+                </a>
             @endif
         </div>
     </div>

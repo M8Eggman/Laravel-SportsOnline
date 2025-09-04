@@ -1,51 +1,51 @@
 .user-profile {
-  width: 200px;
-  height: 51px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  background: linear-gradient(
-    to bottom right,
-    rgb(255, 68, 84) 0%,
-    rgba(46, 142, 255, 0) 30%
-  );
-  background-color: rgba(46, 142, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
+    width: 200px;
+    height: 51px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background: linear-gradient(
+        to bottom right,
+        rgb(255, 68, 84) 0%,
+        rgba(46, 142, 255, 0) 30%
+    );
+    background-color: rgba(46, 142, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
 }
 
 .user-profile:hover,
 .user-profile:focus {
-  background-color: rgb(255, 68, 84);
-  box-shadow: 0 0 10px rgb(255, 68, 84);
-  outline: none;
+    background-color: rgb(255, 68, 84);
+    box-shadow: 0 0 10px rgb(255, 68, 84);
+    outline: none;
 }
 
 .user-profile-inner {
-  width: 198px;
-  height: 47px;
-  border-radius: 13px;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  color: #fff;
-  font-weight: 600;
+    width: 198px;
+    height: 47px;
+    border-radius: 13px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: #fff;
+    font-weight: 600;
 }
-.user-profile-inner a{
-    color: rgba(0, 0, 0, 0.70);
+.user-profile-inner span {
+    color: rgba(0, 0, 0, 0.7);
 }
-.user-profile-inner a:hover{
+.user-profile-inner:hover span {
     color: rgba(0, 0, 0);
 }
 
 .user-profile-inner svg {
-  width: 27px;
-  height: 27px;
-  fill: #fff;
+    width: 27px;
+    height: 27px;
+    fill: #fff;
 }
 
 .btn_modify {
@@ -65,5 +65,4 @@
 .btn_modify:hover {
     background-color: rgb(255, 68, 84);
     color: rgb(255, 255, 255);
-    
 }

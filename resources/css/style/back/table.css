@@ -133,6 +133,14 @@
 .btn-valo.danger {
     background: var(--valo-primary);
 }
+.btn-valo.disabled,
+.btn-valo[aria-disabled="true"] {
+    background-color: rgba(var(--valo-secondary-rgb), 0.6);
+    color: var(--valo-text-gray);
+    cursor: not-allowed;
+    filter: brightness(0.85);
+    pointer-events: none; /* empêche le clic */
+}
 
 .badge {
     display: inline-block;
@@ -233,6 +241,14 @@
     color: var(--valo-white);
     border-radius: 0.3rem;
     padding: 0.6rem;
+}
+.form-control-valo:disabled,
+.form-select-valo:disabled {
+    background-color: rgba(var(--valo-secondary-rgb), 0.6);
+    color: var(--valo-text-gray);
+    border: 1px dashed var(--valo-border);
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 .form-row {
     display: flex;
