@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mt-4">
         <h1 class="titre_home">Our Teams</h1>
-       @foreach($equipes as $equipe)
+       @forelse($equipes as $equipe)
            <div class="team ">
                <h2>{{ $equipe->name }}</h2>
                <div class="team_city">
@@ -28,10 +28,17 @@
                    @else
                        <p>Aucun joueur dans cette équipe</p>
                    @endif
+                   
 
                </div>    
            </div>
            <hr>
-       @endforeach
+           @empty
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    No teams found.
+                </div>
+            </div>
+            @endforelse
    </div>
 @endsection

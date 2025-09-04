@@ -122,6 +122,12 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+.team_img_one>a{
+    transition: all ease-in-out 300ms;
+}
+.team_img_one>a:hover{
+    scale: 1.1;
+}
 .spane{
     font-size: 20pt;
     color: #ffffff;

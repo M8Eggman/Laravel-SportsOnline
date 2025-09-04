@@ -13,7 +13,7 @@
                <h4>{{ $equipe->city }}</h4>
                <div class="div_team_titre">
                     @if($equipe->genre)
-                    <span class="spanee">Equipe {{ ucfirst($equipe->genre->name) }}e</span>
+                    <span class="spanee">{{ ucfirst($equipe->genre->name) }} Team</span>
                     @endif
                     @if($equipe->continent)
                     <p class="team_conti">{{ $equipe->continent->name }}</p>
@@ -26,15 +26,18 @@
                             <div class="team_player_one">
                                 <div class="team_img_one">
                                     @if($joueur->photo && $joueur->photo->src)
-                                    <img src="{{ Storage::url($joueur->photo->src) }}" alt="{{ $joueur->first_name }}" >
+                                    <a href="{{ route('joueur.show', $joueur->id) }}">
+                                        <img src="{{ Storage::url($joueur->photo->src) }}" alt="{{ $joueur->first_name }}" >
+                                    </a>
                                     @endif
                                     <div>
                                         <h4><span class="spane">{{ $joueur->last_name }}</span> {{ $joueur->first_name }}</h4>
                                         @if($joueur->position)
-                                        <p><small>Position:</small><span style="text-transform:uppercase"> {{ $joueur->position->name }}</span></p>
+                                        <p><span style="text-transform:uppercase"> {{ $joueur->position->name }}</span></p>
                                         @endif
                                     </div>
                                 </div>
+                                
                         </div>
                     @endforeach
                 @else
