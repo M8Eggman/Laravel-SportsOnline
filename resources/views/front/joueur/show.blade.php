@@ -4,15 +4,18 @@
 
 @section('content')
     <div class="container p-5">
-        <div class="card border-0">
-            <div class="d-flex g-3">
-                <div class="d-flex justify-content-center player_img">
-                    <img src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/300' }}" alt="">
+        <div class="card_div card border-0">
+            <div class="div_player d-flex g-3">
+                <div class="div_player_ni">
+                    <div class="d-flex justify-content-center player_img">
+                        <img src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/300' }}" alt="">
+                    </div>
+                    <h2 class="card-title player_name">{{ $joueur->first_name }} {{ $joueur->last_name }}</h2>
+
                 </div>
-                <div class="flex-grow-1">
+                <div class="flex-grow-1" style="max-width: 300px">
                     <div class="card-body d-flex flex-column justify-content-between h-100">
                         <div>
-                            <h2 class="card-title">{{ $joueur->first_name }} {{ $joueur->last_name }}</h2>
                             <p><strong>Age:</strong> {{ $joueur->age ?? 'N/A' }}</p>
                             <p><strong>Position:</strong> {{ ucfirst($joueur->position?->name) ?? 'Not specified' }}</p>
                             <p><strong>City:</strong> {{ $joueur->city ?? 'Unknown' }}</p>
@@ -22,7 +25,7 @@
                                 <p><strong>Phone:</strong> {{ $joueur->phone }}</p>
                             @endcanany
                             <p>
-                                <strong>Team:</strong>
+                                <strong style="color: red">Team:</strong>
                                 @if($joueur->equipe)
                                     <a href="{{ route('equipe.show', $joueur->equipe->id) }}" class="text-decoration-none">
                                         {{ $joueur->equipe->name }}
