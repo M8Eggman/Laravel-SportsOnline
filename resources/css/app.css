@@ -6,6 +6,7 @@
 @import "/resources/css/style/team.css";
 @import "/resources/css/style/carousel.css";
 @import "/resources/css/style/partials.css";
+@import "/resources/css/style/player.css";
 
 :root {
     --valo-primary: #ff4454;

@@ -1,0 +1,63 @@
+.card_div{
+    top: 50px;
+}
+.div_player{
+    align-items: center;
+    padding: 30px;
+    justify-content: space-around;
+}
+
+.player_img{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    top: 0;
+}
+
+.player_img>img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: #ff4454 3px solid;
+    box-shadow: 
+        0 0 0 7px rgb(0, 0, 0),
+        0 0 0 10px #ff4454;
+    left: 10px;
+    object-fit: cover;
+}
+
+.player_name{
+    border: #ff4454 3px solid;
+    box-shadow: 
+        0 0 0 7px rgb(0, 0, 0),
+        0 0 0 10px #ff4454;
+    width: 300px;
+    text-align: center;
+    padding-block: 20px;
+    position: relative;
+    background-color: black;
+}
+.div_player_ni{
+    align-items: center;
+}
+.div_back_info{
+    background: linear-gradient(90deg, #00000000, #000, #00000000);
+    grid-row: 1;
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    top: 30px;
+    position: relative;
+    align-items: center;
+}
+.div_edit{
+    top: -22rem;
+    left: 22rem;
+    position: relative;
+}
+.div_back>.card-body{
+    width: 400px;
+}
+.div_back{
+    max-width: 400px;
+}
