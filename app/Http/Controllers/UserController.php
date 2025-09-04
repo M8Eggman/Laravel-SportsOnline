@@ -33,10 +33,11 @@ class UserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $id],
-            'role_id' => ['nullable', 'integer', 'exists:roles,id'],
+            'role_id' => ['required', 'integer', 'exists:roles,id'],
         ]);
 
         $user = User::findOrFail($id);
+        
         $user->last_name = $request->last_name;
         $user->first_name = $request->first_name;
         $user->email = $request->email;

@@ -22,7 +22,6 @@ class JoueurFactory extends Factory
     {
         // récupère les informations dans les autres tables
         $positions = Position::pluck('id')->toArray();
-        $equipes = Equipe::pluck('id')->toArray();
         // récupère un objet genre aléatoire et lutilise pour le nom et le genre de la personne
         $genre = Genre::all()->random();
 

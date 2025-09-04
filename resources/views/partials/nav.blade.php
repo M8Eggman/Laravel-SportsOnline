@@ -15,39 +15,36 @@
 				<li class="nav-item">
 					<a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link {{ request()->is('joueur*') ? 'active' : '' }}"
-						href="{{ route('joueur.index') }}">Players</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle {{ request()->is('joueur*') ? 'active' : '' }}" href="#"
+						id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Players
+					</a>
+					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+						@foreach(['male', 'female', 'Not specified', 'See All'] as $genre)
+							<li>
+								<a href="{{ route('joueur.index', ['genre' => $genre]) }}"
+									class="dropdown-item {{ request()->is("joueur/{$genre}") ? 'active' : '' }}">
+									{{ ucfirst($genre) }}
+								</a>
+							</li>
+						@endforeach
+					</ul>
 				</li>
-				<li class="nav-item dropdown {{ request()->is('equipe*') ? 'active' : '' }}">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle  {{ request()->is('equipe*') ? 'active' : '' }}" href="#"
+						id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Teams
 					</a>
 					<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-						<li>
-							<a class="dropdown-item {{ request()->is('equipe/masculine*') ? 'active' : '' }}"
-								href="{{ route('equipe.masculin.index') }}">
-								Masculine
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item {{ request()->is('equipe/feminine*') ? 'active' : '' }}"
-								href="{{ route('equipe.feminin.index') }}">
-								Feminine
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item {{ request()->is('equipe/mixed*') ? 'active' : '' }}"
-								href="{{ route('equipe.mixte.index') }}">
-								Mixed
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="{{ route('equipe.index') }}">
-								See All
-							</a>
-						</li>
+						@foreach(['Europe', 'CIS', 'Americas', 'Oceania', 'Asia', 'Africa & Middle East', 'See All'] as $continent)
+							<li>
+								<a href="{{ route('equipe.index', ['continent' => $continent]) }}"
+									class="dropdown-item {{ request()->is("equipe/{$continent}") ? 'active' : '' }}">
+									{{ $continent }}
+								</a>
+							</li>
+						@endforeach
 					</ul>
 				</li>
 				@canany(['isAdmin'])
@@ -60,13 +57,13 @@
 				@endcanany
 				@canany(['isAdmin', 'isCoach'])
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarTeamDropdown" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false">
+						<a class="nav-link dropdown-toggle {{ request()->is('back/equipe*') ? 'active' : '' }}" href="#"
+							id="navbarTeamDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Teams
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarTeamDropdown">
 							<li>
-								<a class="dropdown-item {{ request()->is('back/joueur') ? 'active' : '' }}"
+								<a class="dropdown-item {{ request()->is('back/equipe') ? 'active' : '' }}"
 									href="{{ route('back.equipe.index') }}">See All Teams</a>
 							</li>
 							<li>
@@ -78,8 +75,8 @@
 				@endcanany
 				@canany(['isAdmin', 'isCoach', 'isUser'])
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarPlayerDropdown" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false">
+						<a class="nav-link dropdown-toggle {{ request()->is('back/joueur*') ? 'active' : '' }}" href="#"
+							id="navbarPlayerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							Players
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarPlayerDropdown">
@@ -95,8 +92,6 @@
 						</ul>
 				@endcanany
 			</ul>
-
-
 
 			{{-- bouton de connexion/inscription --}}
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">

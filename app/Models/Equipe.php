@@ -12,7 +12,7 @@ class Equipe extends Model
     protected $fillable = ['name', 'city', 'genre_id', 'continent_id'];
 
 
-    public function equipe()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

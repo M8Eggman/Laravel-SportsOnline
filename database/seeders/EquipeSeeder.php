@@ -16,8 +16,8 @@ class EquipeSeeder extends Seeder
      */
     public function run(): void
     {
-        $masculin = Genre::where('name', 'masculin')->first()->id;
-        $feminin = Genre::where('name', 'feminin')->first()->id;
+        $masculin = Genre::where('name', 'male')->first()->id;
+        $feminin = Genre::where('name', 'female')->first()->id;
         $mixte = null;
 
         $equipes = [

@@ -1,24 +1,44 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import "/resources/css/style/back/table.css";
 @import "/resources/css/style/buttons.css";
+@import "/resources/css/style/back/table.css";
 @import "/resources/css/style/card.css";
 @import "/resources/css/style/home.css";
 @import "/resources/css/style/team.css";
 @import "/resources/css/style/carousel.css";
 @import "/resources/css/style/partials.css";
 @import "/resources/css/style/player.css";
+@import "/resources/css/style/auth.css";
+
+:root {
+    --valo-primary: #ff4454;
+    --valo-primary-dark: #d73848;
+    --valo-secondary: #1c232e;
+    --valo-secondary-rgb: 28, 35, 46;
+    --valo-tertiary: #1f1f1f;
+    --valo-border: #2c3e50;
+    --valo-text-gray: #7a818c;
+    --valo-info: #00b8ff;
+    --valo-warning: #ffc107;
+    --valo-success: #2ecc71;
+    --valo-white: #fff;
+    --valo-black: #000;
+}
 
 .bg-main-dark {
     background-color: #2c2c2c;
     color: #f8f9fa;
     min-height: 100dvh;
 }
+
 body {
-    font-family: 'Quicksand', sans-serif;
-    margin-top: 60px;    
+    font-family: "Quicksand", sans-serif;
+    margin-top: 60px;
 }
-h1, h2{
-    font-family: 'Electrolize', 'sans-serif';
-}  
-a{
+h1,
+h2 {
+    font-family: "Electrolize", "sans-serif";
+}
+a {
     text-decoration: none;
 }

@@ -1,72 +1,153 @@
 @extends('layouts.back')
 
-@section('title', "Détails de l'utilisateur")
+@section('title', 'User Details')
 
 @section('content')
-    <div class="container mt-4">
-        <h1>Détails de l'utilisateur</h1>
-        <div class="card shadow-sm mt-3">
-            <div class="card-body">
-                <h4 class="card-title">
-                    {{ $user->first_name }} {{ $user->last_name }}
-                </h4>
-                <p><strong>Email :</strong> {{ $user->email }}</p>
-                <p>
-                    <strong>Rôle :</strong>
-                    @if($user->role)
-                        <span class="badge bg-info">{{ $user->role->name }}</span>
-                    @else
-                        <span class="text-muted">Aucun rôle</span>
-                    @endif
-                </p>
-                <p>
-                    <strong>Email vérifié :</strong>
-                    @if($user->email_verified_at)
-                        <span class="badge bg-success">Oui ({{ $user->email_verified_at->format('d/m/Y H:i') }})</span>
-                    @else
-                        <span class="badge bg-secondary">Non</span>
-                    @endif
-                </p>
-                <p><strong>Date de création :</strong> {{ $user->created_at->format('d/m/Y H:i') }}</p>
-                <p><strong>Dernière mise à jour :</strong> {{ $user->updated_at->format('d/m/Y H:i') }}</p>
-            </div>
+    <div class="page-player">
+
+        <h1 class="table-title">
+            User Profile
+            <span class="table-title-name">{{ $user->first_name }} {{ $user->last_name }}</span>
+        </h1>
+
+        <div class="table-header">
+            <a href="{{ route('back.user.index') }}" class="btn-valo small">Back</a>
+            <a href="{{ route('back.user.edit', $user->id) }}" class="btn-valo small info">Edit</a>
         </div>
 
-        @if($user->equipe && count($user->equipe) > 0)
-            <div class="card shadow-sm mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">Équipes créées</h5>
-                    <ul class="list-group list-group-flush">
-                        @foreach($user->equipe as $equipe)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ $equipe->name }}
-                                <a href="{{ route('equipe.show', $equipe->id) }}" class="btn btn-sm btn-outline-info">Voir</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
+        <div class="player-show-container" style="display:flex; gap:2rem;">
+            <div class="player-infos" style="flex:1;">
+                <table class="table-not-bootstrap" style="margin:0">
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>First Name</th>
+                            <td>{{ $user->first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Name</th>
+                            <td>{{ $user->last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ $user->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Role</th>
+                            <td>
+                                @if($user->role)
+                                    <span class="badge info">{{ $user->role->name }}</span>
+                                @else
+                                    <span class="text-gray">No Role</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email Verified</th>
+                            <td>
+                                @if($user->email_verified_at)
+                                    <span class="badge success">Yes ({{ $user->email_verified_at->format('d/m/Y H:i') }})</span>
+                                @else
+                                    <span class="badge secondary">No</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Created at</th>
+                            <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Updated at</th>
+                            <td>{{ $user->updated_at->format('d/m/Y H:i') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        @if($user->joueur && count($user->joueur) > 0)
-            <div class="card shadow-sm mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">Joueurs créés</h5>
-                    <ul class="list-group list-group-flush">
-                        @foreach($user->joueur as $joueur)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                {{ $joueur->first_name }} {{ $joueur->last_name }}
-                                <a href="{{ route('back.joueur.show', $joueur->id) }}" class="btn btn-sm btn-outline-info">Voir</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        @endif
+                {{-- Teams Created by User --}}
+                @if($user->equipe && $user->equipe->count() > 0)
+                    <table class="table-not-bootstrap mt-4">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Team Name</th>
+                                <th>City</th>
+                                <th>Continent</th>
+                                <th>Gender</th>
+                                <th>Created At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($user->equipe as $equipe)
+                                <tr>
+                                    <td class="table-img">
+                                        <div class="table-img">
+                                            <img
+                                                src="{{ $equipe->src ? asset('storage/' . $equipe->src) : 'https://placehold.co/50x50' }}">
+                                        </div>
+                                    </td>
+                                    <td>{{ $equipe->name }}</td>
+                                    <td>{{ $equipe->city }}</td>
+                                    <td>{{ $equipe->continent?->name ?? 'Not defined' }}</td>
+                                    <td>
+                                        @if($equipe->genre?->name === 'male')
+                                            <span class="badge info">Male Team</span>
+                                        @elseif($equipe->genre?->name === 'female')
+                                            <span class="badge info">Female Team</span>
+                                        @else
+                                            <span class="badge info">Mixed Team</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $equipe->created_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ route('back.equipe.show', $equipe->id) }}" class="btn-valo small info">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
 
-        <div class="mt-3">
-            <a href="{{ route('back.user.index') }}" class="btn btn-secondary">Retour à la liste</a>
-            <a href="{{ route('back.user.edit', $user->id) }}" class="btn btn-warning">Modifier</a>
+                {{-- Players Created by User --}}
+                @if($user->joueur && $user->joueur->count() > 0)
+                    <table class="table-not-bootstrap mt-4">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Position</th>
+                                <th>Team</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($user->joueur as $joueur)
+                                <tr>
+                                    <td>
+                                        <div class="table-img">
+                                            <img
+                                                src="{{ $joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : 'https://placehold.co/50x50' }}">
+                                        </div>
+                                    </td>
+                                    <td class="break">{{ $joueur->first_name }}</td>
+                                    <td class="break">{{ $joueur->last_name }}</td>
+                                    <td>{{ ucfirst($joueur->position?->name) ?? 'Not defined' }}</td>
+                                    <td>{{ $joueur->equipe?->name ?? 'No Team' }}</td>
+                                    <td>
+                                        <a href="{{ route('back.joueur.show', $joueur->id) }}" class="btn-valo small info">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
+            </div>
         </div>
     </div>
 @endsection
