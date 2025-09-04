@@ -17,7 +17,7 @@ Route::get('/', [HomeController::class, 'home'])->name('accueil');
 
 // Routes equipe 
 // front
-Route::get('/equipe/{continent}', [EquipeController::class, 'index'])->name('equipe.index');
+Route::get('/equipe/{continent?}', [EquipeController::class, 'index'])->name('equipe.index');
 Route::get('/equipe/{id}/show', [EquipeController::class, 'show'])->name('equipe.show');
 
 // back
@@ -32,7 +32,7 @@ Route::middleware([CoachVerification::class])->group(function () {
 });
 // Routes joueur 
 // front
-Route::get('/joueur/{genre}', [JoueurController::class, 'index'])->name('joueur.index');
+Route::get('/joueur/{genre?}', [JoueurController::class, 'index'])->name('joueur.index');
 Route::get('/joueur/{id}/show', [JoueurController::class, 'show'])->name('joueur.show');
 
 // back
