@@ -1,19 +1,18 @@
-
-.section_b .card{
-    background-color: #9ea2a7;
+.section_b .card {
+    background-color: var(--valo-text-gray);
     color: white;
     padding: 7px;
-
 }
 
-.card{
+.card {
     padding: 7px;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(var(--valo-secondary-rgb), 0.85);
     color: white;
 }
 
 .card_div_img {
     overflow: hidden;
+    background: var(--valo-white);
 }
 
 .card_img {

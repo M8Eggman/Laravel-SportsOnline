@@ -26,9 +26,9 @@
         </button>
     </div>
 
-    <section class="container py-5 section_a">
-        <h1 class="titre_home">Our Teams</h1>
-        <h2 class="mb-4">European Teams</h2>
+    <section class="section_a">
+        <h1 class="titre_home">Our Top Teams & Players</h1>
+        <h2>European Teams</h2>
         <div class="row g-4">
             @foreach ($europeTeams as $t)
                 <div class="col-md-3">
@@ -39,20 +39,18 @@
         </div>
     </section>
     <section class="section_b">
-        <div class="container pb-5">
-            <h2 class="mb-4">Top European Players</h2>
-            <div class="row g-4">
-                @foreach ($europePlayers as $p)
-                    <div class="col-md-3">
-                        <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
-                            :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" :link="route('joueur.show', $p->id)" :element="$p" />
-                    </div>
-                @endforeach
-            </div>
+        <h2>Top European Players</h2>
+        <div class="row g-4">
+            @foreach ($europePlayers as $p)
+                <div class="col-md-3">
+                    <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
+                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" :link="route('joueur.show', $p->id)" :element="$p" />
+                </div>
+            @endforeach
         </div>
     </section>
-    <section class="container pb-5 section_a">
-        <h2 class="mb-4">International Teams</h2>
+    <section class="section_a">
+        <h2>International Teams</h2>
         <div class="row g-4">
             @foreach ($notEuropeTeams as $t)
                 <div class="col-3">
@@ -63,20 +61,18 @@
         </div>
     </section>
     <section class="section_b">
-        <div class="container pb-5">
-            <h2 class="mb-4">International Players</h2>
-            <div class="row g-4">
-                @foreach ($notEuropePlayers as $p)
-                    <div class="col-3">
-                        <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
-                            :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" :link="route('joueur.show', $p->id)" :element="$p" />
-                    </div>
-                @endforeach
-            </div>
-        </div>    
+        <h2>International Players</h2>
+        <div class="row g-4">
+            @foreach ($notEuropePlayers as $p)
+                <div class="col-3">
+                    <x-card :title="$p->first_name . ' ' . $p->last_name" :subtitle="'Position: ' . ucfirst($p->position->name)"
+                        :image="$p->photo?->src ? asset('storage/' . $p->photo->src) : null" :link="route('joueur.show', $p->id)" :element="$p" />
+                </div>
+            @endforeach
+        </div>
     </section>
-    <section class="container pb-5 section_a">
-        <h2 class="mb-4">Free Agents</h2>
+    <section class="section_a">
+        <h2>Free Agents</h2>
         <div class="row g-4">
             @foreach ($freePlayers as $p)
                 <div class="col-3">
