@@ -3,62 +3,73 @@
 .page-user {
     padding: 2rem;
 }
+
 .table-title {
     font-size: 2.5rem;
-    color: #ff4655;
+    color: var(--valo-primary);
     text-transform: uppercase;
     font-weight: 700;
-    border-left: 5px solid #ff4655;
+    border-left: 5px solid var(--valo-primary);
     padding-left: 10px;
 }
+
 .table-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 2rem 0;
 }
+
 .table-not-bootstrap {
     width: 100%;
     border-collapse: collapse;
     table-layout: auto;
     margin-top: 1rem;
     padding: 1rem;
-    background: #1c232e;
-    border: 2px solid #ff4655;
+    background: var(--valo-secondary);
+    border: 2px solid var(--valo-primary);
 }
+
 .table-not-bootstrap thead {
-    background: #ff4655;
-    color: #fff;
+    background: var(--valo-primary);
+    color: var(--valo-white);
     text-transform: uppercase;
 }
+
 .table-not-bootstrap th,
 .table-not-bootstrap td {
     padding: 0.8rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #2c3e50;
+    border-bottom: 1px solid var(--valo-border);
 }
+
 .break {
     word-break: break-word;
     white-space: normal;
     overflow-wrap: anywhere;
 }
+
 .table-not-bootstrap tr:hover {
     background: rgba(255, 70, 85, 0.1);
 }
+
 .text-gray {
-    color: #7a818c;
+    color: var(--valo-text-gray);
     font-size: 0.9rem;
 }
+
 .table-items {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     margin-bottom: 10px;
 }
+
 .table-actions {
     display: flex;
     gap: 8px;
 }
+
 .table-img {
     width: 50px;
     height: 50px;
@@ -70,32 +81,32 @@
     height: 100%;
     object-fit: cover;
     object-position: top;
-    background-color: white;
+    background-color: var(--valo-white);
 }
+
 .table-empty {
     text-align: center;
     padding: 2rem;
-    color: #7a818c;
+    color: var(--valo-text-gray);
     font-style: italic;
 }
 
 .btn-valo {
-    background: #ff4655;
-    color: #fff;
+    background: var(--valo-primary);
+    color: var(--valo-white);
     padding: 0.6rem 1.2rem;
     border: none;
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
     clip-path: polygon(0 0, 95% 0, 100% 25%, 100% 100%, 5% 100%, 0 75%);
-    transition: all 0.2s ease-in-out;
+    transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
     display: inline-block;
     cursor: pointer;
     word-break: keep-all;
 }
-
 .btn-valo:hover {
-    background: #d73848;
+    filter: brightness(0.85);
     transform: translateY(-2px);
 }
 .btn-valo.small {
@@ -103,14 +114,14 @@
     font-size: 0.85rem;
 }
 .btn-valo.info {
-    background: #00b8ff;
+    background: var(--valo-info);
 }
 .btn-valo.warning {
-    background: #ffc107;
-    color: #000;
+    background: var(--valo-warning);
+    color: var(--valo-black);
 }
 .btn-valo.danger {
-    background: #ff4655;
+    background: var(--valo-primary);
 }
 
 .badge {
@@ -121,49 +132,45 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    transition: filter 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
-
 .badge.info {
-    background: #00b8ff;
-    color: #fff;
+    background: var(--valo-info);
+    color: var(--valo-white);
 }
-
 .badge.secondary {
-    background: #ff4655;
-    color: #fff;
+    background: var(--valo-primary);
+    color: var(--valo-white);
 }
-
 .badge.success {
-    background: #2ecc71;
-    color: #000;
+    background: var(--valo-success);
+    color: var(--valo-black);
 }
-
 .badge.warning {
-    background: #ffc107;
-    color: #000;
+    background: var(--valo-warning);
+    color: var(--valo-black);
 }
 .badge:hover {
-    opacity: 0.8;
+    filter: brightness(0.85);
     transform: translateY(-1px);
-    transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 
 .separator td {
-    background: #1c232e;
-    color: #ff4655;
+    background: var(--valo-secondary);
+    color: var(--valo-primary);
     font-weight: 700;
     text-align: center;
-    border-bottom: 1px solid #2c3e50;
+    border-bottom: 1px solid var(--valo-border);
     padding: 0.8rem 1rem;
     text-transform: uppercase;
 }
 
 .alert-success-valo {
-    background-color: #2ecc71;
-    color: #000;
+    background-color: var(--valo-success);
+    color: var(--valo-black);
     padding: 0.8rem 1.2rem;
-    border-left: 5px solid #ff4655;
+    border-left: 5px solid var(--valo-primary);
     border-radius: 6px;
     font-weight: 700;
     margin-bottom: 1rem;

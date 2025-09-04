@@ -8,7 +8,6 @@
 
     <div class="table-header">
         <h2>Users List</h2>
-        <a href="{{ route('back.user.create') }}" class="btn-valo">Create User</a>
     </div>
 
     @if(session('success'))
