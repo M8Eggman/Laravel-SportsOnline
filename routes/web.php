@@ -12,9 +12,8 @@ use App\Http\Middleware\UserVerification;
 use Illuminate\Support\Facades\Route;
 
 
+// Routes home
 Route::get('/', [HomeController::class, 'home'])->name('accueil');
-
-
 
 // Routes equipe 
 // front
@@ -31,7 +30,7 @@ Route::middleware([CoachVerification::class])->group(function () {
     Route::get('/back/equipe/{id}/show', [EquipeController::class, 'show_back'])->name('back.equipe.show');
     Route::delete('/back/equipe/{id}/delete', [EquipeController::class, 'destroy'])->name('back.equipe.delete');
 });
-// route joueur 
+// Routes joueur 
 // front
 Route::get('/joueur/{genre}', [JoueurController::class, 'index'])->name('joueur.index');
 Route::get('/joueur/{id}/show', [JoueurController::class, 'show'])->name('joueur.show');
@@ -47,7 +46,7 @@ Route::middleware([UserVerification::class])->group(function () {
     Route::delete('/back/joueur/{id}/delete', [JoueurController::class, 'destroy'])->name('back.joueur.delete');
 });
 
-// route users
+// Routes users
 Route::middleware([AdminVerification::class])->group(function () {
     Route::get('/back/user', [UserController::class, 'index_back'])->name('back.user.index');
     Route::get('/back/user/create', [UserController::class, 'create'])->name('back.user.create');
