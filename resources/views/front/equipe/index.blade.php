@@ -32,7 +32,6 @@
 
                </div>    
            </div>
-           <hr>
            @empty
             <div class="col-12">
                 <div class="alert alert-info text-center">
