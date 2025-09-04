@@ -127,9 +127,8 @@ class EquipeController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:25'],
             'city' => ['required', 'string', 'max:50'],
-            'src' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'src' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'genre_id' => ['nullable', 'exists:genres,id'],
-            'continent_id' => ['required', 'exists:continents,id'],
         ]);
 
         $equipe = Equipe::findOrFail($id);
@@ -140,7 +139,6 @@ class EquipeController extends Controller
 
         $equipe->name = $request->name;
         $equipe->city = $request->city;
-        $equipe->genre_id = $request->genre_id;
         $equipe->user_id = $request->user()->id;
         $equipe->continent_id = $request->continent_id;
 
@@ -151,7 +149,7 @@ class EquipeController extends Controller
             $original_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $file_name = date('Y_m_d_His') . '_' . uniqid() . '_' . Str::slug($original_name) . '.' . $file->getClientOriginalExtension();
 
-            // stock l'image dans public/photo_joueur
+            // stock l'image dans public/photo_equipe
             $file_path = $file->storeAs('photo_equipe', $file_name, 'public');
 
             // supprimer l’ancienne image si elle existe
@@ -167,7 +165,7 @@ class EquipeController extends Controller
 
         $equipe->save();
 
-        return redirect()->route('back.equipe.index')->with('success', 'Équipe mise à jour avec succès');
+        return redirect()->route('back.equipe.show', $equipe->id)->with('success', 'Équipe mise à jour avec succès');
     }
 
     /**

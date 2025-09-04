@@ -58,10 +58,7 @@
                                 <form method="POST" action="{{ route('back.user.delete', $user->id) }}" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-valo small danger"
-                                        onclick="return confirm('Are you sure you want to delete {{ $user->first_name }} {{ $user->last_name }}?')">
-                                        Delete
-                                    </button>
+                                    <button type="submit" class="btn-valo small danger">Delete</button>
                                 </form>
                             </div>
                         </td>
