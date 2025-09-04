@@ -5,33 +5,19 @@
 @section('content')
     <div class="container mt-4">
         <h1 class="titre_home">Our Teams</h1>
-       @foreach($equipes as $equipe)
-           <div class="team ">
-               <h2>{{ $equipe->name }}</h2>
-               <div class="team_city">
-                   <p class="city">{{ $equipe->city }}</p>
-                   @if($equipe->genre)
-                       <span class="equipe_genre">{{ ucfirst($equipe->genre->name) }}</span>
-                   @endif
-               </div>
-
-
-               <div class="equipe_glo">
-
-                   @if($equipe->joueur && $equipe->joueur->count() > 0)
-                       @foreach ($equipe->joueur as $joueur)
-                        <div class="team_players col-md-3">
-                            <x-card :title="$joueur->last_name.' '.$joueur->first_name" :subtitle="$joueur->position->name" :image="$joueur?->photo->src ? asset('storage/' . $joueur->photo->src) : null"
-                                :link="route('equipe.show', $joueur->id)" :element="$joueur" />
-                        </div>
-                        @endforeach
-                   @else
-                       <p>Aucun joueur dans cette équipe</p>
-                   @endif
-
-               </div>    
-           </div>
-           <hr>
-       @endforeach
-   </div>
+        <div class="row g-4">
+            @forelse ($equipes as $t)
+                <div class="col-3">
+                    <x-card :title="$t->name" :subtitle="$t->city" :image="$t->src ? asset('storage/' . $t->src) : null"
+                        :link="route('equipe.show', $t->id)" :element="$t" />
+                </div>
+            @empty
+                <div class="col-12">
+                    <div class="alert alert-info text-center">
+                        No teams found.
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
 @endsection

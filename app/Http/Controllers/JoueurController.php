@@ -19,14 +19,14 @@ class JoueurController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($genre)
+    public function index($genre = null)
     {
-        $joueurs = match ($genre) {
-            'See All' => Joueur::all(),
-            default => Joueur::whereHas('genre', function ($q) use ($genre) {
-                    $q->where('name', $genre);
-                })->orWhereNull('genre_id')->get(),
-        };
+        if ($genre === null || $genre === 'See All') {
+            // Pas de paramètre OU "See All" → tous les joueurs
+            $joueurs = Joueur::all();
+        } else {
+            $joueurs = Joueur::whereHas('genre', fn($q) => $q->where('name', $genre))->get();
+        }
 
         return view('front.joueur.index', compact('joueurs'));
     }
@@ -82,14 +82,24 @@ class JoueurController extends Controller
         $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
 
         // vérifie si equipe existe et si l'équipe a un genre défini
-        if ($equipe && $equipe->genre_id) {
-            // si le joueur n'a pas de genre ou qu'il ne correspond pas au genre de l'equipe
-            if ($request->genre_id === null || $request->genre_id != $equipe->genre_id) {
-                // on retourne avec une erreur est l'inpute form pre rempli
-                return redirect()
-                    ->back()
-                    ->withInput()
+        if ($equipe) {
+            // vérifie le genre
+            if ($equipe->genre_id && ($request->genre_id === null || $request->genre_id != $equipe->genre_id)) {
+                return redirect()->back()->withInput()
                     ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
+            }
+
+            // vérifie le nombre total de joueurs
+            if ($equipe->joueurs()->count() >= 7) {
+                return redirect()->back()->withInput()
+                    ->withErrors(['equipe_id' => 'This team already has 7 players.']);
+            }
+
+            // vérifie le nombre de joueurs pour la position
+            $positionCount = $equipe->joueurs()->where('position_id', $request->position_id)->count();
+            if ($positionCount >= 2) {
+                return redirect()->back()->withInput()
+                    ->withErrors(['position_id' => 'This position already has 2 players in the team.']);
             }
         }
 
@@ -147,8 +157,8 @@ class JoueurController extends Controller
             ->having('joueur_count', '<', 7)
             ->get();
 
-        // si le joueur a déjà une équipe, on l'ajoute à la liste pour qu'elle apparaisse dans le select
-        if ($joueur->equipe) {
+        // si l'équipe actuelle n'est pas dans la liste, on l'ajoute
+        if (!$equipes->contains($joueur->equipe)) {
             $equipes->push($joueur->equipe);
         }
 
@@ -184,14 +194,24 @@ class JoueurController extends Controller
         $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
 
         // vérifie si equipe existe et si l'équipe a un genre défini
-        if ($equipe && $equipe->genre_id) {
-            // si le joueur n'a pas de genre ou qu'il ne correspond pas au genre de l'equipe
-            if ($request->genre_id === null || $request->genre_id != $equipe->genre_id) {
-                // on retourne avec une erreur est l'inpute form pre rempli
-                return redirect()
-                    ->back()
-                    ->withInput()
+        if ($equipe) {
+            // vérifie le genre
+            if ($equipe->genre_id && ($request->genre_id === null || $request->genre_id != $equipe->genre_id)) {
+                return redirect()->back()->withInput()
                     ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
+            }
+
+            // vérifie le nombre total de joueurs
+            if ($equipe->joueurs()->count() >= 7) {
+                return redirect()->back()->withInput()
+                    ->withErrors(['equipe_id' => 'This team already has 7 players.']);
+            }
+
+            // vérifie le nombre de joueurs pour la position
+            $positionCount = $equipe->joueurs()->where('position_id', $request->position_id)->count();
+            if ($positionCount >= 2) {
+                return redirect()->back()->withInput()
+                    ->withErrors(['position_id' => 'This position already has 2 players in the team.']);
             }
         }
 

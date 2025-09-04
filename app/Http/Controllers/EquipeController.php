@@ -19,15 +19,13 @@ class EquipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($continent)
+    public function index($continent = null)
     {
-        $equipes = match ($continent) {
-            'See All' => Equipe::all(),
-            default => Equipe::whereHas('continent', function ($q) use ($continent) {
-                    $q->where('name', $continent);
-                })->orWhereNull('continent_id')->get(),
-        };
-
+        if ($continent === null || $continent === 'See All') {
+            $equipes = Equipe::all();
+        } else {
+            $equipes = Equipe::whereHas('continent', fn($q) => $q->where('name', $continent))->get();
+        }
         return view('front.equipe.index', compact('equipes'));
     }
 
