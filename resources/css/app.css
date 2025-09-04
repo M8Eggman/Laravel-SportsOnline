@@ -2,6 +2,7 @@
 @import "/resources/css/style/buttons.css";
 @import "/resources/css/style/card.css";
 @import "/resources/css/style/home.css";
+@import "/resources/css/style/team.css";
 @import "/resources/css/style/carousel.css";
 @import "/resources/css/style/partials.css";
 
@@ -14,7 +15,7 @@ body {
     font-family: 'Quicksand', sans-serif;
     margin-top: 60px;    
 }
-h1{
+h1, h2{
     font-family: 'Electrolize', 'sans-serif';
 }  
 a{

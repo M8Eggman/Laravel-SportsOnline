@@ -10,3 +10,12 @@
 footer{
     margin-top: 50px;
 }
+
+.players .card {
+    transition: all 0.2s ease-out;
+}
+
+.players .card:hover {
+    scale: 1.06;
+    filter: brightness(1.1) saturate(1.2);
+}

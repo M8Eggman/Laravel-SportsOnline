@@ -1,4 +1,16 @@
 
+.section_b .card{
+    background-color: #9ea2a7;
+    color: white;
+    padding: 7px;
+
+}
+
+.card{
+    padding: 7px;
+    background-color: #44494f;
+    color: white;
+}
 
 .card_div_img {
     overflow: hidden;
@@ -8,10 +20,15 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    object-position: top;
     transition: transform 0.3s ease;
 }
 
-.card_img:hover {
+.section_b .card_img:hover {
+    transform: scale(1.1);
+    transform-origin: center; /* Centre l'effet de zoom */
+}
+.section_a .card_img:hover {
     transform: scale(1.1);
     transform-origin: center; /* Centre l'effet de zoom */
 }
