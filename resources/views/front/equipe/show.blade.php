@@ -47,7 +47,6 @@
                </div>
                <div class="div_count">
                     <p class="spanee">{{ $equipe->joueur->count() }} joueurs</p>
-
                </div>
 
            </div>
