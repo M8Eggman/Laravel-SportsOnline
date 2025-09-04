@@ -25,10 +25,6 @@ class EquipeController extends Controller
             $equipes = Equipe::all();
         } else {
             $equipes = Equipe::whereHas('continent', fn($q) => $q->where('name', $continent))->get();
-
-            if ($equipes->isEmpty()) {
-                $equipes = Equipe::all();
-            }
         }
         return view('front.equipe.index', compact('equipes'));
     }

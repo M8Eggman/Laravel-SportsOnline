@@ -23,11 +23,8 @@
     transition: transform 0.3s ease;
 }
 
-.section_b .card_img:hover {
-    transform: scale(1.1);
-    transform-origin: center; /* Centre l'effet de zoom */
-}
+.section_b .card_img:hover,
 .section_a .card_img:hover {
     transform: scale(1.1);
-    transform-origin: center; /* Centre l'effet de zoom */
+    transform-origin: center;
 }

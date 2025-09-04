@@ -26,11 +26,6 @@ class JoueurController extends Controller
             $joueurs = Joueur::all();
         } else {
             $joueurs = Joueur::whereHas('genre', fn($q) => $q->where('name', $genre))->get();
-
-            // Si aucun joueur trouvé → fallback sur tous
-            if ($joueurs->isEmpty()) {
-                $joueurs = Joueur::all();
-            }
         }
 
         return view('front.joueur.index', compact('joueurs'));
