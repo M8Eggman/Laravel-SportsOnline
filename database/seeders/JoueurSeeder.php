@@ -37,7 +37,10 @@ class JoueurSeeder extends Seeder
                 ? 'seeder_player_photos/masculin'
                 : 'seeder_player_photos/feminin';
 
+            $first_name = ($genre->name === 'male') ? fake()->firstNameMale() : fake()->firstNameFemale();
+
             $joueur = Joueur::factory()->create([
+                'first_name' => $first_name,
                 'equipe_id' => $equipe->id,
                 'genre_id' => $genre->id,
                 'position_id' => $positions,
@@ -67,7 +70,7 @@ class JoueurSeeder extends Seeder
             }
         }
 
-        // création de 20 joueurs sans équipe et sans genre définis particulier 
+        // création de 20 joueurs sans équipe et sans genre définis en particulier 
         for ($i = 0; $i < 20; $i++) {
             create_joueur((object) ['id' => null], $positions[array_rand($positions)], null);
         }
