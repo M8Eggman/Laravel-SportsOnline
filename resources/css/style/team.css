@@ -81,10 +81,10 @@
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
     padding-inline: 30px;
-    padding-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
     margin-top: 100px;
+    padding-block: 40px;
 }
 
 .team_one h2{
@@ -92,12 +92,16 @@
     padding-block: 25px;
     font-size: 50pt;
     color: #ffffff;
-    width: 100%;
     text-shadow: 
         -1px -1px 0 #ff4454,
         1px -1px 0 #ff4454,
         -1px 1px 0 #ff4454,
         1px 1px 0 #ff4454;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;    
 }
 .team_one h4{
     align-content: center;
@@ -164,7 +168,10 @@
 .div_team_titre{
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 70%;
+    position: absolute;
+    top: 20%;
+
 }
 .team_conti{
     color: #ffffff;
@@ -179,5 +186,18 @@
 
 .div_team_img{
     top: 0;
-    right: 0;
+    right: -40%;
+    position: relative; 
+    overflow: hidden;
+    border-radius: 50%;
+}
+.div_team_players{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+.div_count{
+    display: flex;
+    position: relative;
+    left: 80%;
 }
