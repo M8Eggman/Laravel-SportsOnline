@@ -1,5 +1,5 @@
 .user-profile {
-  width: 131px;
+  width: 200px;
   height: 51px;
   border-radius: 15px;
   cursor: pointer;
@@ -13,6 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 10px;
 }
 
 .user-profile:hover,
@@ -23,7 +24,7 @@
 }
 
 .user-profile-inner {
-  width: 127px;
+  width: 198px;
   height: 47px;
   border-radius: 13px;
   background-color: #ffffff;
@@ -34,9 +35,35 @@
   color: #fff;
   font-weight: 600;
 }
+.user-profile-inner a{
+    color: rgba(0, 0, 0, 0.70);
+}
+.user-profile-inner a:hover{
+    color: rgba(0, 0, 0);
+}
 
 .user-profile-inner svg {
   width: 27px;
   height: 27px;
   fill: #fff;
+}
+
+.btn_modify {
+    width: 120px;
+    height: 50px;
+    background-color: rgb(255, 161, 169);
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.75);
+    top: 8px;
+    right: 8px;
+    position: absolute;
+    border: solid, rgb(255, 68, 84), 1px;
+    text-align: center;
+    align-content: center;
+}
+
+.btn_modify:hover {
+    background-color: rgb(255, 68, 84);
+    color: rgb(255, 255, 255);
+    
 }

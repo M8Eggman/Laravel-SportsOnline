@@ -3,12 +3,16 @@
 @section('title', 'Players')
 
 @section('content')
-    <div class="container mt-4">
-        <h1 class="mb-4">Players</h1>
+    <div class="container players mt-4">
+        <h1 class="mb-4 titre_home"> Our Players</h1>
 
         <div class="row">
             @forelse($joueurs as $joueur)
                 <div class="col-md-4 mb-4">
+<<<<<<< HEAD
+                    <x-card :title="$joueur->first_name . ' ' . $joueur->last_name" :subtitle="'Position: ' . ucfirst($joueur->position->name)" 
+                        :image="$joueur->photo?->src ? asset('storage/' . $joueur->photo->src) : null" :link="route('joueur.show', $joueur->id)" :element="$joueur" />
+=======
                     <div class="card h-100 shadow-sm border-0">
                         @if($joueur->photo && $joueur->photo->src)
                             <img src="{{ asset('storage/' . $joueur->photo->src) }}" class="card-img-top" alt="">
@@ -38,6 +42,7 @@
                             Age: {{ $joueur->age ?? 'N/A' }}
                         </div>
                     </div>
+>>>>>>> 37d206167db2aa86a60036aeddd5d05721f6d62b
                 </div>
             @empty
                 <div class="col-12">
