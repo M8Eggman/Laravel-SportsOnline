@@ -165,7 +165,7 @@ class JoueurController extends Controller
             ->get();
 
         // si l'équipe actuelle n'est pas dans la liste, on l'ajoute
-        if (!$equipes->contains($joueur->equipe)) {
+        if ($joueur->equipe && !$equipes->contains($joueur->equipe)) {
             $equipes->push($joueur->equipe);
         }
 

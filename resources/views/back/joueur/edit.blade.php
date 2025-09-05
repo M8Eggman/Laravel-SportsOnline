@@ -89,7 +89,7 @@
                     <select name="equipe_id" id="equipe_id" class="form-select-valo">
                         <option value="">None</option>
                         @foreach($equipes as $equipe)
-                            <option value="{{ $equipe->id }}" {{ $joueur->equipe_id == $equipe->id ? 'selected' : '' }}>
+                            <option value="{{ $equipe->id }}" {{ old('equipe_id', $equipe->id) == $equipe->id ? 'selected' : '' }}>
                                 {{ $equipe->name }}
                             </option>
                         @endforeach
