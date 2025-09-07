@@ -59,7 +59,8 @@ class UserController extends Controller
 
         // empêche qu'un admin se supprime lui-même
         if ($user->id === $currentUser->id) {
-            return redirect()->route('back.user.index')
+            return redirect()
+                ->route('back.user.index')
                 ->with('error', 'Vous ne pouvez pas supprimer votre propre compte !');
         }
 
@@ -67,11 +68,12 @@ class UserController extends Controller
         if ($user->role->name === 'admin') {
             $adminCount = User::whereHas('role', fn($q) => $q->where('name', 'admin'))->count();
             if ($adminCount <= 1) {
-                return redirect()->route('back.user.index')
+                return redirect()
+                    ->route('back.user.index')
                     ->with('error', 'Impossible de supprimer le dernier admin !');
             }
         }
-        
+
         $user->delete();
 
         return redirect()->route('back.user.index')->with('success', 'Utilisateur supprimé !');
