@@ -197,12 +197,11 @@ class JoueurController extends Controller
             return redirect('/');
         }
 
-        // récupère l'équipe si le joueur crée en a une
+        // récupère l'équipe si le joueur en a une
         $equipe = $request->equipe_id ? Equipe::find($request->equipe_id) : null;
 
-        // vérifie si equipe existe et si l'équipe a un genre défini
         if ($equipe) {
-            // vérifie le genre
+            // Vérifie le genre
             if ($equipe->genre_id && ($request->genre_id === null || $request->genre_id != $equipe->genre_id)) {
                 return redirect()
                     ->back()
@@ -210,16 +209,19 @@ class JoueurController extends Controller
                     ->withErrors(['genre_id' => 'The player must have the same gender as the team.']);
             }
 
-            // vérifie le nombre total de joueurs
-            if ($equipe->joueur->count() >= 7) {
+            // Vérifie le nombre total de joueurs (exclut le joueur actuel)
+            if ($equipe->joueur->where('id', '!=', $joueur->id)->count() >= 7) {
                 return redirect()
                     ->back()
                     ->withInput()
                     ->withErrors(['equipe_id' => 'This team already has 7 players.']);
             }
 
-            // vérifie le nombre de joueurs pour la position
-            $positionCount = $equipe->joueur->where('position_id', $request->position_id)->count();
+            // Vérifie le nombre de joueurs pour la même position (exclut le joueur actuel)
+            $positionCount = $equipe->joueur
+                ->where('id', '!=', $joueur->id)
+                ->where('position_id', $request->position_id)
+                ->count();
 
             if ($positionCount >= 2) {
                 return redirect()
@@ -229,6 +231,7 @@ class JoueurController extends Controller
             }
         }
 
+        // Mise à jour des champs du joueur
         $joueur->first_name = $request->first_name;
         $joueur->last_name = $request->last_name;
         $joueur->age = $request->age;
@@ -239,9 +242,9 @@ class JoueurController extends Controller
         $joueur->equipe_id = $request->equipe_id;
         $joueur->genre_id = $request->genre_id;
         $joueur->user_id = $request->user()->id;
-
         $joueur->save();
 
+        // Gestion de la photo
         $photo = Photo::where('joueur_id', $joueur->id)->first();
 
         if ($request->hasFile('src')) {
@@ -256,20 +259,23 @@ class JoueurController extends Controller
 
             // supprimer l’ancienne image si elle existe
             if ($joueur->photo && $joueur->photo?->src) {
-                // vérifie que le fichier est bien dans photo_joueur avant de le supprimer sinon ça supprimait l'image utilisé par le seeder
                 if (Str::startsWith($joueur->photo->src, 'photo_joueur/')) {
                     Storage::disk('public')->delete($joueur->photo->src);
                 }
             }
 
+            // soit on met à jour la photo existante, soit on en crée une
+            if (!$photo) {
+                $photo = new Photo();
+                $photo->joueur_id = $joueur->id;
+            }
             $photo->src = $file_path;
+            $photo->save();
         }
-
-        $photo->save();
-
 
         return redirect()->route('back.joueur.show', $joueur->id)->with('success', 'Joueur mis à jour !');
     }
+
 
     /**
      * Remove the specified resource from storage.
